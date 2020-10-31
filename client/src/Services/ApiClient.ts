@@ -15,6 +15,7 @@ export const getQuestions = async () => {
 // POST request that returns the response so I can get the MongoDB-generated _id for the post, in case I would implement delete or update.
 export const postQuestion = async (content: QuestionsInterface) => {
   try {
+    console.log('function running')
     const response = await axios.post(`${SERVER_URL}questions`, content);
     return response;
   } catch (err) {

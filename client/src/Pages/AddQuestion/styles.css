@@ -13,3 +13,22 @@
 #question-stem {
   height: 100px;
 }
+
+.bottom-buttons {
+  padding: 40px;
+}
+
+.bottom-buttons button {
+  margin: 30px;
+  border: none;
+  background-color: red;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.bottom-buttons button:first-child {
+  background-color: teal;
+}
