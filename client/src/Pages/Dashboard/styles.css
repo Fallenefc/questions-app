@@ -1,0 +1,35 @@
+.dashboard-container {
+  display: flex;
+  padding: 30px;
+  background-color: yellow;
+  height: 100vh;
+}
+
+.side-question-list {
+  width: 200px;
+  padding: 50px;
+  background-color: yellowgreen;
+}
+
+.list-element {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.done {
+  background-color: red;
+  width: 10px;
+  height: 10px;
+  margin-left: 20px;
+  border-radius: 50%;
+}
+
+.question {
+  background-color: wheat;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+}

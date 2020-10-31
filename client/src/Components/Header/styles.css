@@ -1,0 +1,11 @@
+.header {
+  background-color: rgb(209, 209, 0);
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header span {
+  padding-left: 50px;
+  padding-right: 50px;
+}
