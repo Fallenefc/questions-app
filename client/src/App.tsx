@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Dashboard from './Pages/Dashboard/Dashboard';
 import { getQuestions } from './Services/ApiClient';
+import AddQuestion from './Pages/AddQuestion/AddQuestion';
 
 function App() {
 
@@ -21,9 +22,9 @@ function App() {
     <Router>
     <Header />
     <Switch>
-      {/* <Route path='/:sumName'>
-       <SummonerInfo />
-      </Route> */}
+      <Route path='/addQuestion'>
+       <AddQuestion />
+      </Route>
       <Route exact path='/'>
         <Dashboard questionList={questionList}/>
       </Route>

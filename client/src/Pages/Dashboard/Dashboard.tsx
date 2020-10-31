@@ -9,11 +9,15 @@ interface Props {
 
 export default function Dashboard({ questionList }: Props): ReactElement {
 
-  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [currentQuestion, setCurrentQuestion] = useState(3)
 
   useEffect(() => {
     console.log(questionList);
   });
+
+  const handleClick = (index: number) => {
+    setCurrentQuestion(index);
+  }
 
   return (
     <div className="dashboard-container">
@@ -23,7 +27,7 @@ export default function Dashboard({ questionList }: Props): ReactElement {
             questionList.map((question: QuestionsInterface, index: number) => {
               return (
                 <li key={question._id} className='list-element'>
-                  <div>Question {index}</div>
+                  <div onClick={() => handleClick(index)}>Question {index}</div>
                   <div className='done'></div>
                 </li>
               );
