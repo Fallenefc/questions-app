@@ -9,7 +9,7 @@ interface Props {
 
 export default function Dashboard({ questionList }: Props): ReactElement {
 
-  const [currentQuestion, setCurrentQuestion] = useState(3)
+  const [currentQuestion, setCurrentQuestion] = useState(0)
 
   useEffect(() => {
     console.log(questionList);
@@ -26,9 +26,9 @@ export default function Dashboard({ questionList }: Props): ReactElement {
           {questionList ? (
             questionList.map((question: QuestionsInterface, index: number) => {
               return (
-                <li key={question._id} className='list-element'>
+                <li key={question._id} className={currentQuestion === index ? 'list-element chosen' : 'list-element'}>
                   <div onClick={() => handleClick(index)}>Question {index}</div>
-                  <div className='done'></div>
+                  <div className='done' id={question.done ? 'yes' : 'no'}></div>
                 </li>
               );
             })

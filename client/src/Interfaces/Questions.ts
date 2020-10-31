@@ -4,5 +4,6 @@ export interface QuestionsInterface {
   stem: string,
   correct: number,
   category: string,
-  __v?: number
+  __v?: number,
+  done: boolean
 }

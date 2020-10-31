@@ -8,7 +8,7 @@
 .side-question-list {
   width: 200px;
   padding: 50px;
-  background-color: yellowgreen;
+  background-color: grey;
 }
 
 .list-element {
@@ -32,4 +32,12 @@
   display: flex;
   flex-direction: column;
   padding: 50px;
+}
+
+.chosen {
+  background-color: white
+}
+
+#yes {
+  background-color: greenyellow;
 }

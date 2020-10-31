@@ -4,7 +4,8 @@ interface Question {
   stem: string,
   options: string[],
   correct: number,
-  category: string
+  category: string,
+  done: boolean
 }
 
 const questionSchema: mongoose.Schema<Question> = new mongoose.Schema({
@@ -12,6 +13,7 @@ const questionSchema: mongoose.Schema<Question> = new mongoose.Schema({
   options: [String],
   correct: Number, // This is gonna be the index
   category: String,
+  done: Boolean
 })
 
 export default mongoose.model('Question', questionSchema);

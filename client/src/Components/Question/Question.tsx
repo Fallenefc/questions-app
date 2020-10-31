@@ -31,7 +31,7 @@ function Question({question}: Props): ReactElement {
 
   return (
     <div>
-      <div>{question.stem}</div>
+      <div>{question.stem ? question.stem : null}</div>
       <ul>
         {question.options.map((option: QuestionsInterface, index:number) => {
           return <li key={index}><input type='radio' name='question' value={index} onClick={handleChange}></input>{option}</li>

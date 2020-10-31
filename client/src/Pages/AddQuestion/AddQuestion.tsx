@@ -8,13 +8,6 @@ export default function AddQuestion({addQuestion}: any): ReactElement {
   const [stem, setStem] = useState('');
   const [correct, setCorrect] = useState(0);
 
-  const mockObj = {
-    "stem": "What is the name of our doggoo?",
-    "options": ["Filho", "Estopinha", "Bianca"],
-    "correct": 1,
-    "category": "Test"
-  }
-
   const handleChange = (e: any, index: number): void => {
     let stateCopy = [...options];
     stateCopy[index] = e.target.value;
@@ -35,14 +28,15 @@ export default function AddQuestion({addQuestion}: any): ReactElement {
     setOptions(newState)
   }
 
-  const handleSubmit = (e: any, content:QuestionsInterface) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     addQuestion(
       {
         stem: stem,
         correct: correct,
         options: options,
-        category: 'Test'
+        category: 'Test',
+        done: true
       }
     )
   }
@@ -70,7 +64,7 @@ export default function AddQuestion({addQuestion}: any): ReactElement {
         })}
         <div className='bottom-buttons'>
         <button onClick={addAlternative}>Add Question</button>
-        <button onClick={(event) => handleSubmit(event, mockObj)}>Submit</button>
+        <button onClick={(event) => handleSubmit(event)}>Submit</button>
         </div>
       </form>
     </div>
