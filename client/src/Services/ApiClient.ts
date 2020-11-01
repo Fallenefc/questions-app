@@ -22,3 +22,13 @@ export const postQuestion = async (content: QuestionsInterface) => {
     console.error(err)
   }
 }
+
+export const toggleAnswerService = async (id: number, type:string) => {
+  try {
+    console.log('function running')
+    const response = await axios.put(`${SERVER_URL}answered/${id}/${type}`);
+    return response;
+  } catch (err) {
+    console.error(err)
+  }
+}

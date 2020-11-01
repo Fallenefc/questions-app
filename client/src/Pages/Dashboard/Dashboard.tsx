@@ -5,18 +5,15 @@ import "./styles.css";
 
 interface Props {
   questionList: any; // Fix any type later!
+  toggleAnswer: any;
+  changeQuestion: any;
+  current: any;
 }
 
-export default function Dashboard({ questionList }: Props): ReactElement {
-
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-
-  useEffect(() => {
-    console.log(questionList);
-  });
+export default function Dashboard({ questionList, toggleAnswer, changeQuestion, current }: Props): ReactElement {
 
   const handleClick = (index: number) => {
-    setCurrentQuestion(index);
+    changeQuestion(index);
   }
 
   return (
@@ -26,7 +23,7 @@ export default function Dashboard({ questionList }: Props): ReactElement {
           {questionList ? (
             questionList.map((question: QuestionsInterface, index: number) => {
               return (
-                <li key={question._id} className={currentQuestion === index ? 'list-element chosen' : 'list-element'}>
+                <li key={question._id} className={current === index ? 'list-element chosen' : 'list-element'}>
                   <div onClick={() => handleClick(index)}>Question {index}</div>
                   <div className='done' id={question.done ? 'yes' : 'no'}></div>
                 </li>
@@ -39,7 +36,7 @@ export default function Dashboard({ questionList }: Props): ReactElement {
       </div>
       <div className="question">
         {questionList ? 
-          <Question question={questionList[currentQuestion]} />
+          <Question question={questionList[current]} toggleAnswer={toggleAnswer} index={current}/>
         : (
           <div>Loading</div>
         )}

@@ -1,31 +1,36 @@
-import React, { ReactElement, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { QuestionsInterface } from '../../Interfaces/Questions'
 
 interface Props {
   question: QuestionsInterface | any;
+  toggleAnswer: any;
+  index: any
 }
 
 interface Answer {
   answer: boolean;
 }
 
-function Question({question}: Props): ReactElement {
+function Question({question, toggleAnswer, index}: Props): ReactElement {
 
   const [selected, setSelected] = useState(null);
-  const [answered, setAnswered] = useState<Answer | null>(null);
+
+  useEffect(() => {
+    console.log(question._id);
+  });
 
   const handleChange = (e: any) => {
     setSelected(e.target.value);
   }
 
-  const handleClick = () => {
+  const handleClick = (id: string, index:number) => {
     if (selected == question.correct) { 
       console.log('This is the correct answer!')
-      setAnswered({answer: true})
+      toggleAnswer(id, index, "true")
     }
     else {
       console.log('youre dumb ffs')
-      setAnswered({answer: false})
+      toggleAnswer(id, index, "false")
     }
   }
 
@@ -37,9 +42,9 @@ function Question({question}: Props): ReactElement {
           return <li key={index}><input type='radio' name='question' value={index} onClick={handleChange}></input>{option}</li>
         })}
       </ul>
-      <button onClick={handleClick}>Test</button>
-      {answered ? <div className='answer-comment'>
-        {answered.answer === true ? <p>Correct Answer!</p> : <p>Wrong Answer, try again</p>}
+      <button onClick={() => handleClick(question._id, index)}>Test</button>
+      {question.done !== null ? <div className='answer-comment'>
+        {question.done === true ? <p>Correct Answer!</p> : <p>Wrong Answer, try again</p>}
       </div> : null}
     </div>
   )

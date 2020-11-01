@@ -32,10 +32,13 @@ export const postQuestion = async (req: any, res: any): Promise<void> => {
 export const toggleAnswered = async (req: any, res: any): Promise<void> => {
   try {
     const id = req.params.id;
+    let isCorrect;
+    if (req.params.boo === 'true') isCorrect = true;
+    else if (req.params.boo === 'false') isCorrect = false;
+    else if (req.params.boo === 'markAsUnanswered') isCorrect = null;
     const filter = { _id: id }
-    const qCopy: any = await Questions.findOne(filter).exec();
     const update = {
-      done: !qCopy.done
+      done: isCorrect
     }
     const question = await Questions.findOneAndUpdate(filter, update);
     res.send(question);

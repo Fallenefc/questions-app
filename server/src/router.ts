@@ -7,6 +7,6 @@ const router = express.Router();
 router.get('/questions', getQuestions);
 router.post('/questions', postQuestion);
 router.put('/questions/:id', updateQuestion)
-router.put('/answered/:id', toggleAnswered)
+router.put('/answered/:id/:boo', toggleAnswered)
 
 export default router;
