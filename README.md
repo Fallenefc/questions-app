@@ -6,14 +6,13 @@ To-Do List:
 
 ## INT
 
-- Make UPDATE on server to actually update the question
 - Style properly
 
 ## EASY
 
-- Make UPDATE on server for Marking a question as answered
 - Create Update page
 - Limit the minimum options to: Minimum of 2, maximum of 7
+- Make the choice stay, make answer include the correct choice
 
 
 # MINOR

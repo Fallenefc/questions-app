@@ -36,7 +36,7 @@ export default function AddQuestion({addQuestion}: any): ReactElement {
         correct: correct,
         options: options,
         category: 'Test',
-        done: true
+        done: null
       }
     )
   }

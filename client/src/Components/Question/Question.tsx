@@ -7,17 +7,10 @@ interface Props {
   index: any
 }
 
-interface Answer {
-  answer: boolean;
-}
 
 function Question({question, toggleAnswer, index}: Props): ReactElement {
 
   const [selected, setSelected] = useState(null);
-
-  useEffect(() => {
-    console.log(question._id);
-  });
 
   const handleChange = (e: any) => {
     setSelected(e.target.value);
@@ -25,11 +18,9 @@ function Question({question, toggleAnswer, index}: Props): ReactElement {
 
   const handleClick = (id: string, index:number) => {
     if (selected == question.correct) { 
-      console.log('This is the correct answer!')
       toggleAnswer(id, index, "true")
     }
     else {
-      console.log('youre dumb ffs')
       toggleAnswer(id, index, "false")
     }
   }

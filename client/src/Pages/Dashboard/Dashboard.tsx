@@ -25,7 +25,7 @@ export default function Dashboard({ questionList, toggleAnswer, changeQuestion, 
               return (
                 <li key={question._id} className={current === index ? 'list-element chosen' : 'list-element'}>
                   <div onClick={() => handleClick(index)}>Question {index}</div>
-                  <div className='done' id={question.done ? 'yes' : 'no'}></div>
+                  <div className='done' id={question.done === null ? 'null' : question.done === true ? 'yes' : 'no'}></div>
                 </li>
               );
             })
