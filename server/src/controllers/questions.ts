@@ -28,3 +28,29 @@ export const postQuestion = async (req: any, res: any): Promise<void> => {
     console.error(`Error adding an event to the database: ${e}`)
   }
 }
+
+export const toggleAnswered = async (req: any, res: any): Promise<void> => {
+  try {
+    const id = req.params.id;
+    const filter = { _id: id }
+    const qCopy: any = await Questions.findOne(filter).exec();
+    const update = {
+      done: !qCopy.done
+    }
+    const question = await Questions.findOneAndUpdate(filter, update);
+    res.send(question);
+    res.status(200);
+  }
+  catch (e) {
+    console.log(`Error trying to update!`)
+  }
+}
+
+export const updateQuestion = async (req: any, res: any): Promise<void> => {
+  const id = req.params.id;
+  const filter = { _id: id };
+  const update = req.body;
+  const question = await Questions.findOneAndUpdate(filter, update);
+  res.send(question);
+  res.status(200);
+}
