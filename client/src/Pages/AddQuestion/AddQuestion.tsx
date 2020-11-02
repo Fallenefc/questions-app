@@ -1,8 +1,9 @@
 import React, { ReactElement, useState } from "react";
-import { QuestionsInterface } from "../../Interfaces/Questions";
 import "./styles.css";
 
 export default function AddQuestion({addQuestion}: any): ReactElement {
+
+  // Ok, this works, it's pretty straightforward and not too confusing, try not to make any major changes so it bugs
 
   const [options, setOptions] = useState(["", "", ""]);
   const [stem, setStem] = useState('');

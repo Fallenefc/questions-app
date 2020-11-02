@@ -6,6 +6,7 @@ To-Do List:
 
 ## INT
 
+- Refactor QuestionList and SideList into two components so it's less spaghetti
 - Style properly
 
 ## EASY

@@ -3,6 +3,8 @@ import axios from 'axios'
 import { SERVER_URL } from '../Environment'
 import { QuestionsInterface } from '../Interfaces/Questions';
 
+// API Client Service for GET request
+
 export const getQuestions = async () => {
   try {
     const response = await axios.get(`${SERVER_URL}questions`);
@@ -22,6 +24,8 @@ export const postQuestion = async (content: QuestionsInterface) => {
     console.error(err)
   }
 }
+
+// API Client Service for toggling the answer
 
 export const toggleAnswerService = async (id: number, type:string) => {
   try {

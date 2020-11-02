@@ -10,6 +10,7 @@ interface Props {
 
 function Question({question, toggleAnswer, index}: Props): ReactElement {
 
+  // Is this state really necessary? Gonna double check when my brain is not fried
   const [selected, setSelected] = useState(null);
 
   const handleChange = (e: any) => {

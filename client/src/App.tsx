@@ -8,19 +8,27 @@ import AddQuestion from "./Pages/AddQuestion/AddQuestion";
 import { QuestionsInterface } from "./Interfaces/Questions";
 
 function App() {
+  // Question List state. First it updates by API GET request
+  // Then it updates locally so we do not have to make multiple API GET requests
   const [questionList, setQuestionList] = useState<QuestionsInterface[] | null>(
     null
   );
 
+  ///// CHANGING CURRENT QUESTION SECTION
+
+  // This state is the current question that the user is looking at
+  // Changes when user clicks on another question, starts at index 0 as default
+  // In the future, when user will be able to make it a full test, will be defaulted to the last question user answered, or first unanswered.
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
-
-  useEffect(() => {
-    getQuestions().then((data: any) => setQuestionList(data.data));
-  }, []);
-
+  
+  // Function to change the question according to user click
   const changeQuestion = (index: number) => {
     setCurrentQuestion(index);
   }
+
+  ///// CRUD METHODS, MAKE API CALLS AND ALSO UPDATES STATE LOCALLY
+
+  // ADDING QUESTION
 
   const addQuestion = (content: QuestionsInterface) => {
     postQuestion(content).then((response: any) => {
@@ -33,16 +41,24 @@ function App() {
     });
   };
 
+  // TOGGLING ANSWER AS ANSWERED CORRECT (TRUE), INCORRECT (FALSE), OR NOT ANSWERED (NULL)
+
   const toggleAnswer = async (id: number, index: number, type:string) => {
     const response = await toggleAnswerService(id, type);
     let stateCopy: QuestionsInterface[] = [];
     Array.isArray(questionList)
         ? (stateCopy = [...questionList])
         : (stateCopy = []);
-    stateCopy[index].done = !stateCopy[index].done;
+    stateCopy[index].done = (type === 'true');
     setCurrentQuestion(index);
     setQuestionList(stateCopy);
   }
+
+  // Makes the API call when it starts, and set it to question list state
+  useEffect(() => {
+    getQuestions().then((data: any) => setQuestionList(data.data));
+  }, []);
+
 
   return (
     <Router>
