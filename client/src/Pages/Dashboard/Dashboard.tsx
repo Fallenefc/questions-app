@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement } from "react";
 import Question from "../../Components/Question/Question";
 import { QuestionsInterface } from "../../Interfaces/Questions";
 import "./styles.css";
