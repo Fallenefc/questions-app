@@ -1,5 +1,6 @@
 import {UserModel} from '../models/users'
 import bcrypt from 'bcrypt'
+import { Request, Response } from 'express'
 
 export const registerUser = (req: any, res: any) => {
   bcrypt.hash(req.body.password, 10, async (err, hashedPass) => {

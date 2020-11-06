@@ -1,0 +1,102 @@
+.landing-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: indigo;
+}
+
+.landing-container {
+  width: 70%;
+  height: 90%;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 50px;
+}
+
+.landing-logo {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: rgb(19, 204, 19);
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.landing-logo p {
+  color: white;
+  font-size: 50px;
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+}
+
+.landing-content, .landing-content form {
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: white;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.landing-container span {
+  padding: 20px;
+}
+
+.landing-container span input {
+  margin-left: 30px;
+}
+
+#login-submit-button {
+  background-color: indigo;
+  color: white;
+	border: none;
+	width: 7rem;
+	height: 3rem;
+	border-radius: 0.4rem;
+	cursor: pointer;
+}
+
+#login-submit-button:hover {
+	background: rgb(129, 3, 219);
+}
+
+.login-form {
+	height: 50rem;
+	width: 100%;
+}
+
+.username input, .password input {
+  width: 10rem;
+	height: 1.5rem;
+  margin-left: 2rem;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.login-text {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.signup-here {
+  padding-bottom: 50px;
+}
+
+.signup-here span {
+  color:indigo;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.signup-here span:hover {
+  color:rgb(147, 32, 230);
+  cursor: pointer;
+}
