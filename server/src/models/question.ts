@@ -1,6 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-interface Question {
+export interface QuestionRaw {
   title: string,
   stem: string,
   category: string,
@@ -12,7 +12,11 @@ interface Question {
   difficulty?: string
 }
 
-const questionSchema: mongoose.Schema<Question> = new mongoose.Schema({
+export interface Question extends QuestionRaw {
+  _id: string,
+}
+
+const questionSchema: mongoose.Schema<QuestionRaw> = new mongoose.Schema({
   title: String,
   stem: String,
   category: String,

@@ -1,8 +1,9 @@
-import Questions from '../models/question'
+import Questions, {Question, QuestionRaw} from '../models/question'
+import {Document} from 'mongoose'
 
 export const getQuestions = async (_: any, res: any): Promise<void> => {
   try {
-    const questions = await Questions.find();
+    const questions = await Questions.find(); // find and provide the query with teacher id (using ownership)
     res.status(200);
     res.send(questions);
   }
@@ -15,37 +16,19 @@ export const getQuestions = async (_: any, res: any): Promise<void> => {
 
 export const postQuestion = async (req: any, res: any): Promise<void> => {
   try {
-    const newQuestion = req.body;
-    if (!newQuestion.stem || !newQuestion.options || newQuestion.options.length < 3 || !newQuestion.correct || !newQuestion.category) {
+    const newQuestion: QuestionRaw = req.body; // enforce question interface
+    if (!newQuestion.stem || !newQuestion.options || newQuestion.options.length < 2 || !newQuestion.correct || !newQuestion.category || !newQuestion.ownership) {
       res.status(400);
-      res.send(`"Error": "You are missing one (or more) of the params!"`)
+      return res.send({
+        error: "You are missing one (or more) of the params!"
+      })
     }
-    const createdQuestion = await Questions.create(newQuestion);
+    const createdQuestion: Document = await Questions.create<QuestionRaw>(newQuestion); // check for mongoose document type
     console.log(`Added to database: ${JSON.stringify(newQuestion)}`)
     res.send(createdQuestion)
   }
   catch (e) {
     console.error(`Error adding an event to the database: ${e}`)
-  }
-}
-
-export const toggleAnswered = async (req: any, res: any): Promise<void> => {
-  try {
-    const id = req.params.id;
-    let isCorrect;
-    if (req.params.boo === 'true') isCorrect = true;
-    else if (req.params.boo === 'false') isCorrect = false;
-    else if (req.params.boo === 'markAsUnanswered') isCorrect = null;
-    const filter = { _id: id }
-    const update = {
-      done: isCorrect
-    }
-    const question = await Questions.findOneAndUpdate(filter, update);
-    res.send(question);
-    res.status(200);
-  }
-  catch (e) {
-    console.log(`Error trying to update!`)
   }
 }
 
