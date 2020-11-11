@@ -83,23 +83,28 @@ export const userLogIn = async (req: any, res: any) => {
 
 
 export const forgotPassword = async (req: any, res: any): Promise<void> => {
+  // gets the user email from the request body
   const { username } = req.body;
 
   try {
+    // finds the user in the database, generates a temporary token
     const user:any = await UserModel.find({username});
     const token = jwt.sign({ _id: user._id }, SECRET_KEY, {expiresIn: '30m'});
 
+    // this is what will be sent on the email
     const data = {
       ...MG_DATA,
       to: username,
       html: `http://localhost:5000/resetpassword/${token}`,
     };
 
+    // filter and update, then update the user with a new reset password token
+    // TODO: Make the token have an expiration timer
     const filter = { username };
     const update = { resetPasswordLink: token };
-
     await UserModel.findOneAndUpdate(filter, update);
 
+    // Sends the email to the person
     mg.messages().send(data, (err, _) => {
       if (err) {
         return res.json({ error: err.message });
@@ -125,10 +130,26 @@ export const resetPassword = async (req: any, res: any) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const filter = { username };
-    const update = { password: hashedPassword };
-    await UserModel.findOneAndUpdate(filter, update);
+    await UserModel.findOneAndUpdate(filter, {
+      password: hashedPassword,
+      resetPasswordLink: ''
+    });
     return res.sendStatus(200);
   } catch (err) {
     res.sendStatus(401);
+  }
+}
+
+export const getUserInfo = async (req: any, res: any) => {
+  try {
+    const data = req.user;
+    res.status(200);
+    res.send({
+      username: data.username,
+      name: data.name,
+      _id: data._id
+    });
+  } catch (err) {
+    res.sendStatus(403);
   }
 }

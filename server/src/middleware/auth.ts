@@ -13,11 +13,11 @@ const authMiddleware = async (req: any, res: Response, next: any) => { // change
 
   try {
     const jwtCheck: any = jwt.verify(token, SECRET_KEY); // change this any type later!
-    console.log(jwtCheck)
     const user = await UserModel.findOne({_id: jwtCheck._id});
     // If user does not exist in the database
     if (!user) return res.sendStatus(401);
     req.user = user;
+    console.log(user)
     next();
   // if user is not verified
   } catch (error) {
