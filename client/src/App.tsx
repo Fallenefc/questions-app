@@ -11,6 +11,7 @@ import {
 import AddQuestion from "./Pages/AddQuestion/AddQuestion";
 import { QuestionsInterface } from "./Interfaces/Questions";
 import Landing from "./Pages/Landing/Landing";
+import Routes from "./Pages/Routes";
 
 function App() {
   // Question List state. First it updates by API GET request
@@ -65,35 +66,38 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <Header />
-      <Switch>
-        <Route
-          exact
-          path="/addQuestion"
-          component={() => <AddQuestion addQuestion={addQuestion} />}
-        ></Route>
-        <Route
-          exact
-          path="/"
-          component={() => (
-            <Dashboard
-              questionList={questionList}
-              toggleAnswer={toggleAnswer}
-              changeQuestion={changeQuestion}
-              current={currentQuestion}
-            />
-          )}
-        ></Route>
-        <Route
-          exact
-          path="/landing"
-          component={() => (
-            <Landing/>
-          )}
-        ></Route>
-      </Switch>
-    </Router>
+    // <Router>
+    //   <Header />
+    //   <Switch>
+    //     <Route
+    //       exact
+    //       path="/addQuestion"
+    //       component={() => <AddQuestion addQuestion={addQuestion} />}
+    //     ></Route>
+    //     <Route
+    //       exact
+    //       path="/"
+    //       component={() => (
+    //         <Dashboard
+    //           questionList={questionList}
+    //           toggleAnswer={toggleAnswer}
+    //           changeQuestion={changeQuestion}
+    //           current={currentQuestion}
+    //         />
+    //       )}
+    //     ></Route>
+    //     <Route
+    //       exact
+    //       path="/landing"
+    //       component={() => (
+    //         <Landing/>
+    //       )}
+    //     ></Route>
+    //   </Switch>
+    // </Router>
+    <>
+    <Routes />
+    </>
   );
 }
 
