@@ -1,6 +1,6 @@
 import express from 'express';
 import { deleteQuestion, getQuestions, postQuestion, updateQuestion } from './controllers/questions';
-import { forgotPassword, registerUser, userLogIn } from './controllers/users'
+import { forgotPassword, registerUser, resetPassword, userLogIn } from './controllers/users'
 import authMiddleware from './middleware/auth';
 
 const router = express.Router();
@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/signup', registerUser); // ok!
 router.post('/login', userLogIn); // ok!
 router.post('/forgotPassword', forgotPassword);
-router.post('/resetPassword', () => console.log('I am placeholder'));
+router.post('/resetPassword', resetPassword);
 router.post('/logout', () => console.log('I am placeholder'));
 // create a me route?
 

@@ -98,8 +98,7 @@ export const forgotPassword = async (req: any, res: any): Promise<void> => {
     const filter = { username };
     const update = { resetPasswordLink: token };
 
-    const test = await UserModel.findOneAndUpdate(filter, update);
-    console.log(test);
+    await UserModel.findOneAndUpdate(filter, update);
 
     mg.messages().send(data, (err, _) => {
       if (err) {
@@ -109,6 +108,26 @@ export const forgotPassword = async (req: any, res: any): Promise<void> => {
     });
 
 
+  } catch (err) {
+    res.sendStatus(401);
+  }
+}
+
+export const resetPassword = async (req: any, res: any) => {
+  const {username, password, token} = req.body;
+
+  try {
+    const user: any = await UserModel.findOne({username});
+    console.log(user);
+    if (!user) throw new Error();
+    if (token !== user.resetPasswordLink) throw new Error();
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const filter = { username };
+    const update = { password: hashedPassword };
+    await UserModel.findOneAndUpdate(filter, update);
+    return res.sendStatus(200);
   } catch (err) {
     res.sendStatus(401);
   }
