@@ -14,7 +14,7 @@ router.post('/logout', () => console.log('I am placeholder'));
 
 // QUESTION BANK ROUTES
 router.get('/questions', authMiddleware, getQuestions);
-router.post('/questions', postQuestion);
+router.post('/questions', authMiddleware, postQuestion);
 router.put('/questions/:id', updateQuestion); // not made yet
 router.delete('/questions/:id', () => console.log('I am placeholder'));
 

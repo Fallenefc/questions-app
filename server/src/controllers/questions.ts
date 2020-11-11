@@ -1,9 +1,9 @@
 import Questions, {Question, QuestionRaw} from '../models/question'
 import {Document} from 'mongoose'
 
-export const getQuestions = async (_: any, res: any): Promise<void> => {
+export const getQuestions = async (req: any, res: any): Promise<void> => {
   try {
-    const questions = await Questions.find(); // find and provide the query with teacher id (using ownership)
+    const questions = await Questions.find({ownership: req.user._id}); // find and provide the query with teacher id (using ownership)
     res.status(200);
     res.send(questions);
   }
@@ -17,13 +17,16 @@ export const getQuestions = async (_: any, res: any): Promise<void> => {
 export const postQuestion = async (req: any, res: any): Promise<void> => {
   try {
     const newQuestion: QuestionRaw = req.body; // enforce question interface
-    if (!newQuestion.stem || !newQuestion.options || newQuestion.options.length < 2 || !newQuestion.correct || !newQuestion.category || !newQuestion.ownership) {
+    if (!newQuestion.stem || !newQuestion.options || newQuestion.options.length < 2 || !newQuestion.correct || !newQuestion.category) {
       res.status(400);
       return res.send({
         error: "You are missing one (or more) of the params!"
       })
     }
-    const createdQuestion: Document = await Questions.create<QuestionRaw>(newQuestion); // check for mongoose document type
+    const createdQuestion: Document = await Questions.create<QuestionRaw>({
+      ...newQuestion,
+      ownership: req.user._id
+    }); // check for mongoose document type
     console.log(`Added to database: ${JSON.stringify(newQuestion)}`)
     res.send(createdQuestion)
   }
