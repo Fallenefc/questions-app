@@ -4,14 +4,16 @@ export interface UserInterface {
   username: string,
   password: string,
   name: string,
-  accessLevel: number
+  accessLevel: number,
+  resetPasswordLink: string
 }
 
 const userSchema: mongoose.Schema<UserInterface> = new mongoose.Schema({
   username: String,
   password: String,
   name: String,
-  accessLevel: Number
+  accessLevel: Number,
+  resetPasswordLink: String
 })
 
 export const UserModel = mongoose.model('User', userSchema);

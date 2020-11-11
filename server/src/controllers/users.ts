@@ -1,7 +1,11 @@
 import { UserModel } from "../models/users";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { SECRET_KEY } from "../environment";
+import { MG_API_KEY, MG_DATA, MG_DOMAIN, SECRET_KEY } from "../environment";
+import mailgun from 'mailgun-js';
+
+const DOMAIN = MG_DOMAIN;
+const mg = mailgun({apiKey: MG_API_KEY, domain: DOMAIN});
 
 export const registerUser = async (req: any, res: any) => {
   try {
@@ -25,6 +29,7 @@ export const registerUser = async (req: any, res: any) => {
       const user = new UserModel({
         username: req.body.username,
         password: hashedPass,
+        resetPasswordLink: ''
         // name: req.body.name
       });
       await UserModel.create(user);
@@ -75,3 +80,36 @@ export const userLogIn = async (req: any, res: any) => {
     });
   }
 };
+
+
+export const forgotPassword = async (req: any, res: any): Promise<void> => {
+  const { username } = req.body;
+
+  try {
+    const user:any = await UserModel.find({username});
+    const token = jwt.sign({ _id: user._id }, SECRET_KEY, {expiresIn: '30m'});
+
+    const data = {
+      ...MG_DATA,
+      to: username,
+      html: `http://localhost:5000/resetpassword/${token}`,
+    };
+
+    const filter = { username };
+    const update = { resetPasswordLink: token };
+
+    const test = await UserModel.findOneAndUpdate(filter, update);
+    console.log(test);
+
+    mg.messages().send(data, (err, _) => {
+      if (err) {
+        return res.json({ error: err.message });
+      }
+      return res.sendStatus(200);
+    });
+
+
+  } catch (err) {
+    res.sendStatus(401);
+  }
+}
