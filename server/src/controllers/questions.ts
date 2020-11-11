@@ -17,6 +17,13 @@ export const getQuestions = async (req: any, res: any): Promise<void> => {
 export const postQuestion = async (req: any, res: any): Promise<void> => {
   try {
     const newQuestion: QuestionRaw = req.body; // enforce question interface
+    // const requiredFields = ['stem', 'title', 'correct', 'category'];
+    // if (!(Object.keys(newQuestion).every((key) => requiredFields.includes(key)))) {
+    //   res.status(400);
+    //   return res.send({
+    //     error: "You are missing one (or more) of the params!"
+    //   })
+    // }
     if (!newQuestion.stem || !newQuestion.options || newQuestion.options.length < 2 || !newQuestion.correct || !newQuestion.category) {
       res.status(400);
       return res.send({
@@ -49,12 +56,6 @@ export const updateQuestion = async (req: any, res: any): Promise<void> => {
   } catch (err) {
     res.sendStatus(403);
   }
-  // const id = req.params.id;
-  // const filter = { _id: id };
-  // const update = req.body;
-  // const question = await Questions.findOneAndUpdate(filter, update);
-  // res.send(question);
-  // res.status(200);
 }
 
 export const deleteQuestion = async (req: any, res: any): Promise<void> => {

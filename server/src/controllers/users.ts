@@ -29,8 +29,8 @@ export const registerUser = async (req: any, res: any) => {
       const user = new UserModel({
         username: req.body.username,
         password: hashedPass,
-        resetPasswordLink: ''
-        // name: req.body.name
+        resetPasswordLink: '',
+        name: req.body.name
       });
       await UserModel.create(user);
       console.log(`Added to database: ${JSON.stringify(user)}`);

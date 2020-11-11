@@ -5,10 +5,13 @@ import LoggedOnRoutes from './LoggedOnRoutes';
 
 // import { Container } from './styles';
 
-const Routes: React.FC = () => {
-  // const { signed } = useAuth();
-  const signed = false;
-	return signed ? <LoggedOnRoutes /> : <LoggedOffRoutes />;
+interface Props {
+  loggedIn: any,
+  userInfo: any
+}
+
+const Routes: any = ({loggedIn, userInfo}: Props) => {
+	return loggedIn ? <LoggedOnRoutes userInfo={userInfo} /> : <LoggedOffRoutes />;
 };
 
 export default Routes;
