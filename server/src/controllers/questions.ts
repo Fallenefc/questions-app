@@ -56,3 +56,13 @@ export const updateQuestion = async (req: any, res: any): Promise<void> => {
   // res.send(question);
   // res.status(200);
 }
+
+export const deleteQuestion = async (req: any, res: any): Promise<void> => {
+  try {
+    const questionId: string = req.params.id;
+    await Questions.deleteOne({_id: questionId});
+    res.sendStatus(200);
+  } catch (err) {
+    res.sendStatus(403);
+  }
+}

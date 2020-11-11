@@ -1,5 +1,5 @@
 import express from 'express';
-import { getQuestions, postQuestion, updateQuestion } from './controllers/questions';
+import { deleteQuestion, getQuestions, postQuestion, updateQuestion } from './controllers/questions';
 import { registerUser, userLogIn } from './controllers/users'
 import authMiddleware from './middleware/auth';
 
@@ -15,8 +15,8 @@ router.post('/logout', () => console.log('I am placeholder'));
 // QUESTION BANK ROUTES
 router.get('/questions', authMiddleware, getQuestions); // ok!
 router.post('/questions', authMiddleware, postQuestion); // ok!
-router.put('/questions/:id', authMiddleware, updateQuestion); // not made yet
-router.delete('/questions/:id', authMiddleware, () => console.log('I am placeholder'));
+router.put('/questions/:id', authMiddleware, updateQuestion); // ok!
+router.delete('/questions/:id', authMiddleware, deleteQuestion);
 
 // EXAM ROUTES
 // create a verify route
