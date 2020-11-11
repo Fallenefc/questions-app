@@ -36,10 +36,23 @@ export const postQuestion = async (req: any, res: any): Promise<void> => {
 }
 
 export const updateQuestion = async (req: any, res: any): Promise<void> => {
-  const id = req.params.id;
-  const filter = { _id: id };
-  const update = req.body;
-  const question = await Questions.findOneAndUpdate(filter, update);
-  res.send(question);
-  res.status(200);
+  try {
+    const questionId = req.params.id;
+    const filter = { _id: questionId };
+    // how to make it not update if those properties are not passed in the body? or maybe wouldnt be needed...
+    const update = req.body;
+    const question = await Questions.findByIdAndUpdate(filter, update);
+
+    res.send(question);
+    res.status(200);
+
+  } catch (err) {
+    res.sendStatus(403);
+  }
+  // const id = req.params.id;
+  // const filter = { _id: id };
+  // const update = req.body;
+  // const question = await Questions.findOneAndUpdate(filter, update);
+  // res.send(question);
+  // res.status(200);
 }
