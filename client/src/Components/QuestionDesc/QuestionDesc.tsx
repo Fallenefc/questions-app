@@ -5,6 +5,9 @@ interface Props {
 }
 
 export const QuestionDesc = ({info}: Props) => {
+
+  const optionsNameArray = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
   return (
     <div className="question-description">
       <p>Category: {info.category}</p>
@@ -12,8 +15,7 @@ export const QuestionDesc = ({info}: Props) => {
       {info.options.map((option: any, optionIndex: any) => {
         return (
           <div key={optionIndex}>
-            <input type="radio"></input>
-            {option}
+            {optionsNameArray[optionIndex]}) {option}
           </div>
         );
       })}

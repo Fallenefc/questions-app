@@ -11,25 +11,38 @@
   margin-top: 50px;
 }
 
-.question-description {
-  /* display: none; */
-}
-
 .title-icons {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.title-icons i:first-child {
+.fa-caret-down {
+  margin-right: 30px;
+  color: indigo;
+}
+
+.title-dropdown {
   cursor: pointer;
+}
+
+
+.edit-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit-delete i {
+  cursor: pointer;
+}
+
+.fa-edit {
+  margin-right: 30px;
+  margin-top: 2px;
   color: green;
 }
 
-.title-icons i:nth-of-type(2) {
+.fa-trash {
   color: red;
-}
-
-.fa-caret-down {
-  margin-right: 30px;
 }

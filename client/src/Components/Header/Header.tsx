@@ -21,6 +21,7 @@ export default function Header(): ReactElement<React.FC> {
     // change the user state to null again
     dispatch(addUser(null));
     localStorage.removeItem('token');
+    history.push('/')
     window.location.reload(false);
   }
 
