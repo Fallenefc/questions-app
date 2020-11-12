@@ -7,6 +7,7 @@ export const CREATE_QUIZ = 'CREATE_QUIZ'; // add extra layer of guarding against
 export const ADD_QUESTION_TO_QUIZ = 'ADD_QUESTION_TO_QUIZ';
 export const ADD_QUIZ = 'ADD_QUIZ';
 export const ADD_USER = 'ADD_USER';
+export const GET_QUESTIONS = 'GET_QUESTIONS'
 
 /**
  * {
@@ -33,7 +34,12 @@ export const addQuiz = (quiz: Quiz): Action => ({
   payload: quiz
 })
 
-export const addUser = (user: User): Action => ({
+export const addUser = (user: User | null): Action => ({
   type: ADD_USER,
   payload: user
+})
+
+export const getQuestions = (questions: Question[]): Action => ({
+  type: GET_QUESTIONS,
+  payload: questions
 })

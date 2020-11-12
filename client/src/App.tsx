@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import {getInfo} from "./Services/ApiClient";
+import {getInfo, getApiQuestions} from "./Services/ApiClient";
 import Routes from "./Pages/Routes";
 import { User } from "./Interfaces/User";
 import {useDispatch} from 'react-redux';
-import {addUser} from './Store/actions';
+import {addUser, getQuestions} from './Store/actions';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
@@ -16,11 +16,19 @@ function App() {
   useEffect(() => {
     getInfo().then((response): void => {
       if (response) {
-        console.log(response.data);
+        // console.log(response.data);
         setLoggedIn(true);
         // setUserInfo(response.data)
         dispatch(addUser(response.data));
-      } //should I also get questions and quizzes infos on this first API call?
+      }
+    }).catch(err => {
+      console.log('Please log in first')
+    }).then((response): any => {
+      // make the API request to get the questions, then update Redux state
+      getApiQuestions().then((response: any) => {
+        // console.log(response.data);
+        dispatch(getQuestions(response.data));
+      })
     })
   }, []);
 

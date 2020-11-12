@@ -14,6 +14,15 @@ export const getInfo = async () => {
   }
 }
 
+export const getApiQuestions = async () => {
+  try {
+    const response: AxiosResponse = await api.get('/questions');
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 // // API Client Service for GET request
 
 // export const getQuestions = async () => {

@@ -22,6 +22,7 @@ export default function Login(): ReactElement {
     // make the API request for a login, store the token in the local storage
     logIn(email, password).then((response) => {
       localStorage.setItem('token', `Bearer ${response.data.token}`);
+      window.location.reload(false);
       history.push({pathname: '/'});
     }).catch((err) => {
       alert('Failed to log in!')
