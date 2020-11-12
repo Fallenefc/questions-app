@@ -1,12 +1,17 @@
 import React, { ReactElement } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { State } from "../../Store/reducer";
 import "./styles.css";
 import logoImg from '../../Assets/logo2.svg'
 
 export default function Header(): ReactElement<React.FC> {
+
   const user = useSelector((state: State) => state.user);
+
+  const handleLogout = () => {
+    // change the user state to null again
+    localStorage.removeItem('token');
+  }
 
   return (
     <header className="header">
@@ -18,7 +23,7 @@ export default function Header(): ReactElement<React.FC> {
       <div className="user-logout">
         <div className="welcome">Welcome, {user?.username}!</div>
         <div className="logout-button">
-          <button>Logout</button>
+          <button onClick={handleLogout}>Logout</button>
         </div>
       </div>
     </header>

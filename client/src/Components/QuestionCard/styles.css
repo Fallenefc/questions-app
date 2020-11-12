@@ -1,0 +1,35 @@
+
+.question-title {
+  width: 80%;
+  background-color: white;
+  margin: 5px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.question-title:first-child {
+  margin-top: 50px;
+}
+
+.question-description {
+  /* display: none; */
+}
+
+.title-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-icons i:first-child {
+  cursor: pointer;
+  color: green;
+}
+
+.title-icons i:nth-of-type(2) {
+  color: red;
+}
+
+.fa-caret-down {
+  margin-right: 30px;
+}
