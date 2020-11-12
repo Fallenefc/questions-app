@@ -1,4 +1,5 @@
 import React, { ReactElement, useState } from "react";
+import {useHistory} from 'react-router-dom'
 import './styles.css'
 
 interface Props {
@@ -6,6 +7,8 @@ interface Props {
 }
 
 export default function LogIn({toggle}: Props): ReactElement {
+
+  const history = useHistory();
 
   const [loginInfo, setLoginInfo] = useState({username: '', password: ''});
 
@@ -17,6 +20,12 @@ export default function LogIn({toggle}: Props): ReactElement {
     event.preventDefault();
     console.log(loginInfo);
     setLoginInfo({username: '', password: ''})
+  }
+
+
+  const testClick = () => {
+    localStorage.setItem('token', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFjNTY3ODFlMjU4MjM3MzIxMjQwMjEiLCJpYXQiOjE2MDUxMzQwNzEsImV4cCI6MTYwNTIyMDQ3MX0.78jhutlR3t6N5mrx4sJrw3QEt2pJQ_42H6sOe2i4BuI')
+    history.push('/')
   }
 
   return (
@@ -44,7 +53,7 @@ export default function LogIn({toggle}: Props): ReactElement {
           ></input>
         </span>
         <span>
-          <button type="submit" id="login-submit-button">
+          <button type="submit" id="login-submit-button" onClick={testClick}>
             Log In
           </button>
         </span>

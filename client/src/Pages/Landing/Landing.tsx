@@ -23,7 +23,12 @@ export default function Landing(): ReactElement {
           <p>Exam App Name</p>
           <img src={landingLogo} width="100%" height="50%"></img>
         </div>
-        {logIn ? <LogIn toggle={toggleLogInSignUp}/> : <SignUp toggle={toggleLogInSignUp}/>}
+        <div className='login-or-signup'>
+          <h1>Hello!</h1>
+          <button>Sign In</button>
+          <h2>No account? <span>Create one</span></h2>
+        </div>
+        {/* {logIn ? <LogIn toggle={toggleLogInSignUp}/> : <SignUp toggle={toggleLogInSignUp}/>} */}
       </div>
     </div>
   );
