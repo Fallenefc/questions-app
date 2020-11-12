@@ -8,7 +8,8 @@ export const ADD_QUESTION_TO_QUIZ = 'ADD_QUESTION_TO_QUIZ';
 export const ADD_QUESTION_TO_QBANK = 'ADD_QUESTION_TO_QBANK';
 export const ADD_QUIZ = 'ADD_QUIZ';
 export const ADD_USER = 'ADD_USER';
-export const GET_QUESTIONS = 'GET_QUESTIONS'
+export const GET_QUESTIONS = 'GET_QUESTIONS';
+export const DELETE_QUESTION = 'DELETE_QUESTION';
 
 /**
  * {
@@ -48,4 +49,9 @@ export const getQuestions = (questions: Question[]): Action => ({
 export const addQuestionToQuestionBank = (question: any): Action => ({
   type: ADD_QUESTION_TO_QBANK,
   payload: question
+})
+
+export const deleteQuestionFromQuestionBank = (questionIndex: number): Action => ({
+  type: DELETE_QUESTION,
+  payload: questionIndex
 })
