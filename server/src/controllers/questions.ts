@@ -60,6 +60,7 @@ export const updateQuestion = async (req: any, res: any): Promise<void> => {
 
 export const deleteQuestion = async (req: any, res: any): Promise<void> => {
   try {
+    // search question by id, so just deletes it
     const questionId: string = req.params.id;
     await Questions.deleteOne({_id: questionId});
     res.sendStatus(200);

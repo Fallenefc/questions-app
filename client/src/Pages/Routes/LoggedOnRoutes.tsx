@@ -11,7 +11,7 @@ const LoggedOnRoutes = ({userInfo}: Props) => {
 		<BrowserRouter>
 			<Switch>
 				<Route path='/'
-				component={() => <Dashboard userInfo={userInfo}/>}
+				component={() => <Dashboard />}
 				/>
 			</Switch>
 		</BrowserRouter>

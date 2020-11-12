@@ -1,10 +1,14 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect } from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import { State } from '../../Store/reducer';
 
-interface Props {
-  userInfo: any,
-}
+export default function Dashboard(): ReactElement {
 
-export default function index({userInfo}: Props): ReactElement {
+  const user = useSelector((state: State) => state.user)
+
+  useEffect(() => {
+    console.log(user)
+  })
 
   const handleClick = () => {
     localStorage.removeItem('token');
@@ -12,7 +16,7 @@ export default function index({userInfo}: Props): ReactElement {
 
   return (
     <div>
-      Welcome, {userInfo ? userInfo.username : 'Loading'}
+      Welcome, {user ? user.username : 'Loading'}
       <button onClick={handleClick}>Logout</button>
     </div>
   )

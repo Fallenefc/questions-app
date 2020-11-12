@@ -104,7 +104,7 @@ export const forgotPassword = async (req: any, res: any): Promise<void> => {
     const update = { resetPasswordLink: token };
     await UserModel.findOneAndUpdate(filter, update);
 
-    // Sends the email to the person
+    // Sends the email to the person with a link to reset password
     mg.messages().send(data, (err, _) => {
       if (err) {
         return res.json({ error: err.message });
@@ -118,17 +118,22 @@ export const forgotPassword = async (req: any, res: any): Promise<void> => {
   }
 }
 
+// Reset password controller
 export const resetPassword = async (req: any, res: any) => {
+  // Input on the front-end will send username, password and the token as the request body
   const {username, password, token} = req.body;
 
   try {
+    // find the user in the database
     const user: any = await UserModel.findOne({username});
     console.log(user);
+    // if user does not exist, throws error
     if (!user) throw new Error();
+    // if token does not match the resetpasswordlink in the user, throws error
     if (token !== user.resetPasswordLink) throw new Error();
 
+    // hashes inputed password and update user password with hashed pw, and resets the link so token cannot be reused
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const filter = { username };
     await UserModel.findOneAndUpdate(filter, {
       password: hashedPassword,
@@ -141,6 +146,8 @@ export const resetPassword = async (req: any, res: any) => {
 }
 
 export const getUserInfo = async (req: any, res: any) => {
+  // This is really straightforward, gets username, name and _id and sends it to the frontend.
+  // Does not send sensitive information like password, resetpasswordlink
   try {
     const data = req.user;
     res.status(200);
