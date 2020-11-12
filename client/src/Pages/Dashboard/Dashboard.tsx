@@ -13,20 +13,8 @@ export default function Dashboard(): ReactElement {
     console.log(user);
   });
 
-  const handleClick = () => {
-    localStorage.removeItem("token");
-  };
-
   return (
-    <div className="dashboard-page">
-      <Header />
-      <div className="dashboard-nav-and-container">
-        <NavBar />
         <div className="dashboard-container">
-          <QuestionList />
-          {/* Create a Router here for the component I want to load */}
         </div>
-      </div>
-    </div>
   );
 }

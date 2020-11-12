@@ -7,8 +7,13 @@ import { PORT } from './environment'
 
 const app = express();
 
+const corsConfig = {
+  origin: 'http://localhost:3000',
+  credentials: true
+}
+
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors(corsConfig))
 app.use(router)
 
 const server = app.listen(PORT, (): void => {

@@ -1,5 +1,6 @@
 // API Client Service that makes the GET and the POST requests
 import { AxiosResponse } from 'axios'
+import { QuestionRaw } from '../Interfaces/Questions';
 import api from './AxiosConfig';
 
 // Get /me information
@@ -20,6 +21,16 @@ export const getApiQuestions = async () => {
     return response;
   } catch (err) {
     console.log(err);
+  }
+}
+
+export const postQuestion = async (questionBody: any) => {
+  try {
+    console.log(questionBody)
+    const response: AxiosResponse = await api.post('/questions', questionBody);
+    return response;
+  } catch (err) {
+    console.error(err)
   }
 }
 

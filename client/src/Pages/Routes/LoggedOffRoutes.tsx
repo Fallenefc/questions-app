@@ -7,7 +7,7 @@ const LoggedRoutes: React.FC = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<Route path='/' exact component={Landing} />
+				<Route exact path='/' component={Landing} />
 			</Switch>
 			<Switch>
 				<Route path='/login' exact component={Login} />

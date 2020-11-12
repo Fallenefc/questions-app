@@ -5,6 +5,7 @@ import { User } from "../Interfaces/User";
 
 export const CREATE_QUIZ = 'CREATE_QUIZ'; // add extra layer of guarding against typos
 export const ADD_QUESTION_TO_QUIZ = 'ADD_QUESTION_TO_QUIZ';
+export const ADD_QUESTION_TO_QBANK = 'ADD_QUESTION_TO_QBANK';
 export const ADD_QUIZ = 'ADD_QUIZ';
 export const ADD_USER = 'ADD_USER';
 export const GET_QUESTIONS = 'GET_QUESTIONS'
@@ -42,4 +43,9 @@ export const addUser = (user: User | null): Action => ({
 export const getQuestions = (questions: Question[]): Action => ({
   type: GET_QUESTIONS,
   payload: questions
+})
+
+export const addQuestionToQuestionBank = (question: any): Action => ({
+  type: ADD_QUESTION_TO_QBANK,
+  payload: question
 })

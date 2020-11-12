@@ -1,8 +1,12 @@
 .question-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  height: 100%;
+  width: 100%;
+  background: rgb(234,144,244);
+  background: linear-gradient(0deg, rgba(234,144,244,0.9640231092436975) 0%, rgba(174,45,253,1) 100%);
 }
 
 .question-form input {
@@ -10,8 +14,13 @@
   height: 40px;
 }
 
+#question-title {
+  min-height: 40px;
+}
+
 #question-stem {
-  height: 100px;
+  min-height: 100px;
+  margin-bottom: 30px;
 }
 
 .bottom-buttons {
@@ -31,4 +40,25 @@
 
 .bottom-buttons button:first-child {
   background-color: teal;
+}
+
+.question-page {
+  display: flex;
+  height: 92vh;
+}
+
+.options {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+}
+
+.options span{
+  margin-right: 10px;
+  min-width: 80px;
+}
+
+.options input {
+  min-width: 500px;
+  width: 60%;
 }

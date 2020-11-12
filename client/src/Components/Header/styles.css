@@ -9,6 +9,7 @@
 
 .website-logo {
   margin-left: 40px;
+  cursor: pointer;
 }
 
 .user-logout {

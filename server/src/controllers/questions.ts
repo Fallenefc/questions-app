@@ -24,8 +24,8 @@ export const postQuestion = async (req: any, res: any): Promise<void> => {
     //     error: "You are missing one (or more) of the params!"
     //   })
     // }
-    if (!newQuestion.stem || !newQuestion.options || newQuestion.options.length < 2 || !newQuestion.correct || !newQuestion.category) {
-      res.status(400);
+    if (!newQuestion.stem || newQuestion.options.length < 2 || newQuestion.correct === undefined || !newQuestion.category) {
+      res.status(418);
       return res.send({
         error: "You are missing one (or more) of the params!"
       })

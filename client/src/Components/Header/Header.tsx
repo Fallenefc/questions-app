@@ -11,6 +11,11 @@ export default function Header(): ReactElement<React.FC> {
   const user = useSelector((state: State) => state.user);
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push({pathname: '/'})
+  }
 
   const handleLogout = () => {
     // change the user state to null again
@@ -22,7 +27,7 @@ export default function Header(): ReactElement<React.FC> {
   return (
     <header className="header">
       <div className="header-left">
-        <div className="website-logo">
+        <div className="website-logo" onClick={handleClick}>
           <img src={logoImg} height='100%' width='70px'></img>
         </div>
       </div>

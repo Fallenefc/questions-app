@@ -13,6 +13,9 @@ function App() {
   const dispatch = useDispatch();
 
   // Makes the API call when it loads, and set loggedIn and userInfo states
+
+  // BUG FIX: breaks when logs out! Apparently it's fixed, didnt chain the API requests properly!
+
   useEffect(() => {
     getInfo().then((response): void => {
       if (response) {
@@ -20,15 +23,12 @@ function App() {
         setLoggedIn(true);
         // setUserInfo(response.data)
         dispatch(addUser(response.data));
+        getApiQuestions().then((response: any) => {
+          dispatch(getQuestions(response.data));
+        })
       }
     }).catch(err => {
       console.log('Please log in first')
-    }).then((response): any => {
-      // make the API request to get the questions, then update Redux state
-      getApiQuestions().then((response: any) => {
-        // console.log(response.data);
-        dispatch(getQuestions(response.data));
-      })
     })
   }, []);
 

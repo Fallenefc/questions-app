@@ -1,7 +1,7 @@
 import { Question } from "../Interfaces/Questions";
 import { Quiz } from "../Interfaces/Quiz";
 import { User } from "../Interfaces/User";
-import { Action, ADD_QUESTION_TO_QUIZ, ADD_QUIZ, ADD_USER, GET_QUESTIONS } from "./actions";
+import { Action, ADD_QUESTION_TO_QBANK, ADD_QUESTION_TO_QUIZ, ADD_QUIZ, ADD_USER, GET_QUESTIONS } from "./actions";
 
 const initialState: State = {
   running: null,
@@ -43,6 +43,11 @@ export const reducer = (state = initialState, action: Action) => {
       return ({
         ...state,
         questions: action.payload
+      })
+    case ADD_QUESTION_TO_QBANK:
+      return ({
+        ...state,
+        questions: [...state.questions, action.payload]
       })
     default: 
       return state;
