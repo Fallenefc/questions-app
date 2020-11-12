@@ -1,20 +1,15 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement } from "react";
 import "./styles.css";
 import landingLogo from "../../Assets/undraw_exams_g4ow.svg";
-import LogIn from "../../Components/LogIn/LogIn";
-import SignUp from "../../Components/SignUp/SignUp";
+import { useHistory } from "react-router-dom";
 
 export default function Landing(): ReactElement {
 
-  const [logIn, setLogIn] = useState(true);
+  const history = useHistory();
 
-  const toggleLogInSignUp = () => {
-    setLogIn((current) => !current)
+  const handleClick = () => {
+    history.push({pathname: '/login'})
   }
-
-  useEffect(() => { // Just a test function
-    console.log(logIn)
-  })
 
   return (
     <div className="landing-page">
@@ -25,10 +20,9 @@ export default function Landing(): ReactElement {
         </div>
         <div className='login-or-signup'>
           <h1>Hello!</h1>
-          <button>Sign In</button>
+          <button onClick={handleClick}>Sign In</button>
           <h2>No account? <span>Create one</span></h2>
         </div>
-        {/* {logIn ? <LogIn toggle={toggleLogInSignUp}/> : <SignUp toggle={toggleLogInSignUp}/>} */}
       </div>
     </div>
   );

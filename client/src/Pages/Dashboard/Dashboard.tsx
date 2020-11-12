@@ -1,5 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
+import Header from '../../Components/Header/Header';
 import { State } from '../../Store/reducer';
 
 export default function Dashboard(): ReactElement {
@@ -16,6 +17,7 @@ export default function Dashboard(): ReactElement {
 
   return (
     <div>
+      <Header />
       Welcome, {user ? user.username : 'Loading'}
       <button onClick={handleClick}>Logout</button>
     </div>

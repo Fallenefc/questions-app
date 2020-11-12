@@ -20,7 +20,7 @@ function App() {
         setLoggedIn(true);
         // setUserInfo(response.data)
         dispatch(addUser(response.data));
-      }
+      } //should I also get questions and quizzes infos on this first API call?
     })
   }, []);
 

@@ -1,11 +1,31 @@
 .header {
-  background-color: rgb(209, 209, 0);
-  padding: 20px;
+  background-color:indigo;
+  color: white;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
 }
 
-.header span {
-  padding-left: 50px;
-  padding-right: 50px;
+.website-logo {
+  margin-left: 40px;
+}
+
+.user-logout {
+  margin-right: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.user-logout div {
+  margin-right: 30px;
+}
+
+.logout-button button {
+  background-color: greenyellow;
+  border: none;
+  padding: 5px;
+  width: 80px;
+  border-radius: 5px;
+  font-weight: 700;
+  color: indigo;
 }

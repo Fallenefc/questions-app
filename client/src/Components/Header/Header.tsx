@@ -1,22 +1,25 @@
 import React, { ReactElement } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { State } from "../../Store/reducer";
 import "./styles.css";
+import logoImg from '../../Assets/logo2.svg'
 
 export default function Header(): ReactElement<React.FC> {
+  const user = useSelector((state: State) => state.user);
+
   return (
     <header className="header">
-      <Link to="/">
-        <div className="home">
-          <span>Home</span>
+      <div className="header-left">
+        <div className="website-logo">
+          <img src={logoImg} height='100%' width='70px'></img>
         </div>
-      </Link>
-      <Link to="/addQuestion">
-        <div className="add-question">
-          <span>Add a Question</span>
+      </div>
+      <div className="user-logout">
+        <div className="welcome">Welcome, {user?.username}!</div>
+        <div className="logout-button">
+          <button>Logout</button>
         </div>
-      </Link>
-      <div className="about">
-        <span>About</span>
       </div>
     </header>
   );

@@ -3,15 +3,14 @@ import './styles.css'
 import pageImage from '../../Assets/undraw_online_test_gba7.svg'
 import logoImg from '../../Assets/logo2.svg'
 import { logIn } from '../../Services/ApiClientUser';
+import { useHistory } from 'react-router-dom';
 
-interface Props {
-  
-}
-
-export default function Login({}: Props): ReactElement {
+export default function Login(): ReactElement {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const history = useHistory();
 
   const handleChange = (event: any) => {
     if (event.target.name === 'password') setPassword(event.target.value);
@@ -22,17 +21,16 @@ export default function Login({}: Props): ReactElement {
     event.preventDefault();
     // make the API request for a login, store the token in the local storage
     logIn(email, password).then((response) => {
-      console.log(response)
-      localStorage.setItem('token', `Bearer ${response.data.token}`)
+      localStorage.setItem('token', `Bearer ${response.data.token}`);
+      history.push({pathname: '/'});
     }).catch((err) => {
       alert('Failed to log in!')
     })
     // reset 
-  }
+    setEmail('');
+    setPassword('');
 
-  useEffect(() => { // Testing purposes only
-    console.log(email, password)  
-  })
+  }
 
   return (
     <div className='login-page'>
