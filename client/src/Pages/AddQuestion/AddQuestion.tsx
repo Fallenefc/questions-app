@@ -1,4 +1,5 @@
 import React, { ReactElement, useState } from "react";
+import { useDispatch } from "react-redux";
 import { postQuestion } from "../../Services/ApiClient";
 import { addQuestionToQuestionBank } from "../../Store/actions";
 import "./styles.css";
@@ -10,6 +11,8 @@ export default function AddQuestion(): ReactElement {
   const [stem, setStem] = useState("");
   const [correct, setCorrect] = useState(0);
   const [title, setTitle] = useState("");
+
+  const dispatch = useDispatch();
 
   const handleChange = (e: any, index: number): void => {
     let stateCopy = [...options];
@@ -56,8 +59,7 @@ export default function AddQuestion(): ReactElement {
       options: options,
       category: "Test",
     });
-    if (response) addQuestionToQuestionBank(response.data);
-    console.log(response)
+    if (response) dispatch(addQuestionToQuestionBank(response.data));
   };
 
   return (
