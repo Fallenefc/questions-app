@@ -22,7 +22,7 @@ export const reducer = (state = initialState, action: Action) => {
     case ADD_QUIZ:
       return ({ //first is a copy of the state, and after the comma it will be what we are going to change on the state
         ...state,
-        quizzes: [...state.quizzes, action.payload.quiz]
+        quizzes: [...state.quizzes, action.payload]
       });
     case ADD_QUESTION_TO_QUIZ:
       return ({

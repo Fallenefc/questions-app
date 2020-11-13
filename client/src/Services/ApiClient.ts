@@ -59,3 +59,12 @@ export const getFullQuiz = async (quizId: string) => {
     console.log(err);
   }
 }
+
+export const createExam = async (title: string) => {
+  try {
+    const response: AxiosResponse = await api.post('/exams', {title: title});
+    return response.data;
+  } catch (err) {
+    console.error(err)
+  }
+}
