@@ -50,6 +50,7 @@ export const reducer = (state = initialState, action: Action) => {
         questions: [...state.questions, action.payload]
       })
     case DELETE_QUESTION:
+      // can use filter instead of splice
       const copiedQuestion = [...state.questions];
       copiedQuestion.splice(action.payload, 1)
       return ({

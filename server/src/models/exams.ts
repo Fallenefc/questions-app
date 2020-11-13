@@ -5,16 +5,24 @@ interface SingleExam {
   score: number
 }
 
-export interface ExamInterface {
+export interface ExamRaw {
   title: string,
-  timer?: number, // will be implemented on a future date
-  options: string[],
-  ownership: string, // will change this later to have a reference on the mongoose database
-  doneBy: SingleExam[], // this will show an array of students who finished the exam, and their score
-  availableTo?: string[] // will be implemented in the future. This will be the students in which the exam is available to
+  options: string[], // array of question ids
+  ownership: string, // teacher ID
+  doneBy: SingleExam[],
 }
 
-const examSchema: mongoose.Schema<ExamInterface> = new mongoose.Schema({
+export interface Exam {
+  _id: string,
+  title: string,
+  // timer?: number, // will be implemented on a future date
+  options: string[],
+  ownership: string, // Teacher ID
+  doneBy: SingleExam[], // this will show an array of students who finished the exam, and their score
+  // availableTo?: string[] // will be implemented in the future. This will be the students in which the exam is available to
+}
+
+const examSchema: mongoose.Schema<Exam> = new mongoose.Schema({
   title: String,
   // timer: Number,
   options: [String],
@@ -26,4 +34,4 @@ const examSchema: mongoose.Schema<ExamInterface> = new mongoose.Schema({
   }],
 })
 
-export const ExamModel = mongoose.model('Exam', examSchema);
+export default mongoose.model('Exam', examSchema);
