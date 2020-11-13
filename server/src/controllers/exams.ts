@@ -72,15 +72,15 @@ const getSingleQuestion = async (questionId: string) => {
 
 export const getFullExam = async (req: any, res: any): Promise<void> => {
   try {
+    // Mongoose will return a full model, so I have to use toObject method to transform that model into the object
     const exam: any = (await Exams.findOne({_id: req.params.examId})).toObject();
-    console.log(exam);
+    // map will return a stream of promises, so I have to wrap it into Promise.all
     exam.questions = await Promise.all(exam.questions.map(async (questionId: any) => {
       const question = await getSingleQuestion(questionId);
       console.log(question);
       return question;
     }))
     res.status(200);
-    // console.log(exam);
     res.send(exam);
   } catch (err) {
     res.status(400);

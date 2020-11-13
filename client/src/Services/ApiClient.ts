@@ -50,3 +50,12 @@ export const getApiQuizzes = async () => {
     console.log(err);
   }
 }
+
+export const getFullQuiz = async (quizId: string) => {
+  try {
+    const response: AxiosResponse = await api.get(`/singleExam/${quizId}`)
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+}

@@ -5,6 +5,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import QuestionList from "../../Components/QuestionList/QuestionList";
 import AddQuestion from "../AddQuestion/AddQuestion";
 import Dashboard from "../Dashboard/Dashboard";
+import SingleQuizPage from "../SingleQuizPage/SingleQuizPage";
 import ViewQuizzes from "../ViewQuizzes/ViewQuizzes";
 import './styles.css'
 
@@ -24,6 +25,7 @@ const LoggedOnRoutes = ({ userInfo }: Props) => {
           	<Route path="/addQuestion" exact component={AddQuestion} />
 						<Route path="/viewQuestions" exact component={QuestionList} />
             <Route path="/viewQuizzes" exact component={ViewQuizzes} />
+            <Route path="/quiz/:quizId" exact component={SingleQuizPage} />
 					</div>
         </Switch>
       </div>
