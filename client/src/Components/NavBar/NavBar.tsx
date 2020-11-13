@@ -7,7 +7,7 @@ const NavBar = () => {
   const history = useHistory();
 
   const handleClick = (event: any) => {
-    history.push({pathname: `${event.target.name}`})
+    history.push({pathname: `/${event.target.name}`})
   }
 
   return (

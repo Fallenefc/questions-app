@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import AddQuestion from "../../Pages/AddQuestion/AddQuestion";
 import { deleteQuestion } from "../../Services/ApiClient";
 import { deleteQuestionFromQuestionBank } from "../../Store/actions";
-import { State } from "../../Store/reducer";
 import AddQuestionModal from "../AddQuestionModal/AddQuestionModal";
 import { QuestionDesc } from "../QuestionDesc/QuestionDesc";
 import "./styles.css";
@@ -38,7 +36,6 @@ export const QuestionCard = ({ info, index, quizWindow }: Props) => {
 
   return (
     <div className="question-title" key={index}>
-      {/* <AddQuestionModal /> */}
       {clickedModal ? (
         <AddQuestionModal handleClick={toggleModal} questionId={info._id} />
       ) : null}
@@ -50,7 +47,9 @@ export const QuestionCard = ({ info, index, quizWindow }: Props) => {
             </span>
           )}
           {quizWindow ? (
-            <span>{index+1}. {info.title}</span>
+            <span>
+              {index + 1}. {info.title}
+            </span>
           ) : (
             <span onClick={handleToggle}>
               <i className="fa fa-caret-down"></i>
@@ -58,13 +57,15 @@ export const QuestionCard = ({ info, index, quizWindow }: Props) => {
             </span>
           )}
         </span>
-        <span className="edit-delete">
-          {quizWindow ? null : <i className="fa fa-edit"></i>}
-          <i
-            className="fa fa-trash"
-            onClick={() => handleDelete(info._id, index)}
-          ></i>
-        </span>
+        {quizWindow ? null : (
+          <span className="edit-delete">
+            <i className="fa fa-edit"></i>
+            <i
+              className="fa fa-trash"
+              onClick={() => handleDelete(info._id, index)}
+            ></i>
+          </span>
+        )}
       </div>
       {toggled ? <QuestionDesc info={info} /> : null}
       {quizWindow ? <QuestionDesc info={info} /> : null}

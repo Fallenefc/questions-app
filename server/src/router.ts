@@ -1,5 +1,5 @@
 import express from "express";
-import { addQuestionToExam, generateExam, getExams, getFullExam } from "./controllers/exams";
+import { addQuestionToExam, deleteAnExam, deleteQuestionFromExam, generateExam, getExams, getFullExam } from "./controllers/exams";
 import {
   deleteQuestion,
   getQuestions,
@@ -35,18 +35,16 @@ router.delete("/questions/:id", authMiddleware, deleteQuestion); // ok!
 // create a verify route
 router.post("/exams", authMiddleware, generateExam); // this will create an exam (empty) - ok!
 router.post("/addQuestion", authMiddleware, addQuestionToExam); // this will add a question to the exam - ok!
-router.delete("/deleteQuestion", authMiddleware, () =>
-  console.log("I am placeholder")
-); // this will delete a question from the exam
+router.post("/deleteQuestion", authMiddleware, deleteQuestionFromExam); // this will delete a question from the exam
 router.post("/generateExam", authMiddleware, () =>
   console.log("I am placeholder")
 ); // this will generate an exam after all the questions are added
 
 // Route that gets the exam and all the full questions inside
-router.get('/singleExam/:examId', authMiddleware, getFullExam);
+router.get('/singleExam/:examId', authMiddleware, getFullExam); // working
 
 router.get("/exams", authMiddleware, getExams); // ok
-router.delete("/exams", () => console.log("I am placeholder")); // this will delete an exam
+router.delete("/exams/:examId", authMiddleware, deleteAnExam); // this will delete an exam - apparently its ok
 // Exam results
 // must create a POST route that sends the completed exam?
 router.get("/results", () => console.log("I am placeholder"));

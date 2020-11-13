@@ -86,3 +86,27 @@ export const getFullExam = async (req: any, res: any): Promise<void> => {
     res.status(400);
   }
 }
+
+export const deleteQuestionFromExam = async (req: any, res: any): Promise<void> => {
+  try {
+    const exam: any = (await Exams.findOne({_id: req.body.examId})).toObject();
+    console.log(exam.questions);
+    exam.questions = exam.questions.filter((question: any) => question !== req.body.questionId);
+    const filteredExam: any = await Exams.findByIdAndUpdate({_id: req.body.examId}, {questions: exam.questions})
+    res.status(200);
+    res.send(filteredExam);
+  } catch (error) {
+    res.status(400);
+  }
+}
+
+export const deleteAnExam = async (req: any, res: any): Promise<void> => {
+  try {
+    const examId = req.params.examId;
+    const deletedExam = await Exams.findByIdAndDelete({_id: examId});
+    res.status(200);
+    res.send(deletedExam);
+  } catch (err) {
+    res.status(400);
+  }
+}

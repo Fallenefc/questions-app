@@ -2,6 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { QuestionCard } from '../../Components/QuestionCard/QuestionCard';
 import { getFullQuiz } from '../../Services/ApiClient';
+import './styles.css'
 
 export default function SingleQuizPage(): ReactElement {
 
@@ -20,7 +21,7 @@ export default function SingleQuizPage(): ReactElement {
   }, [])
 
   return (
-    <div>
+    <div className='single-quiz-container'>
       {fullQuiz ? fullQuiz.title : <div>Loading</div>}
       {fullQuiz ? fullQuiz.questions.map((question: any, index: any) => {
         return (
