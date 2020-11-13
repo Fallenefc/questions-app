@@ -1,5 +1,5 @@
 import express from "express";
-import { addQuestionToExam, generateExam, getExams } from "./controllers/exams";
+import { addQuestionToExam, generateExam, getExams, getFullExam } from "./controllers/exams";
 import {
   deleteQuestion,
   getQuestions,
@@ -41,6 +41,9 @@ router.delete("/deleteQuestion", authMiddleware, () =>
 router.post("/generateExam", authMiddleware, () =>
   console.log("I am placeholder")
 ); // this will generate an exam after all the questions are added
+
+// Route that gets the exam and all the full questions inside
+router.get('/singleExam/:examId', authMiddleware, getFullExam);
 
 router.get("/exams", authMiddleware, getExams); // ok
 router.delete("/exams", () => console.log("I am placeholder")); // this will delete an exam

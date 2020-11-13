@@ -57,3 +57,32 @@ export const addQuestionToExam = async (req: any, res: any): Promise<void> => {
     res.status(400);
   }
 }
+
+// FUNCTION TO GET A SINGLE FULL QUESTION FROM THE DATABASE
+
+const getSingleQuestion = async (questionId: string) => {
+  try {
+    const question = await Questions.findOne({_id: questionId});
+    // console.log(question);
+    return question;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export const getFullExam = async (req: any, res: any): Promise<void> => {
+  try {
+    const exam: any = (await Exams.findOne({_id: req.params.examId})).toObject();
+    console.log(exam);
+    exam.questions = await Promise.all(exam.questions.map(async (questionId: any) => {
+      const question = await getSingleQuestion(questionId);
+      console.log(question);
+      return question;
+    }))
+    res.status(200);
+    // console.log(exam);
+    res.send(exam);
+  } catch (err) {
+    res.status(400);
+  }
+}

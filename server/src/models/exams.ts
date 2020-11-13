@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { Question } from './question';
 
 interface SingleExam {
   student: string,
@@ -21,7 +22,7 @@ export interface Exam {
   ownership: string, // Teacher ID
   doneBy: SingleExam[], // this will show an array of students who finished the exam, and their score
   // availableTo?: string[] // will be implemented in the future. This will be the students in which the exam is available to
-  submitted: boolean
+  submitted: boolean,
 }
 
 const examSchema: mongoose.Schema<Exam> = new mongoose.Schema({
