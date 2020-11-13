@@ -23,7 +23,7 @@ export interface Action {
   payload: any
 }
 
-export const addQuestionToQuiz = (quizId: string, question: Question): Action => ({
+export const addQuestionToQuiz = (quizId: string, question: string): Action => ({
   type: ADD_QUESTION_TO_QUIZ,
   payload: { // create obj when you multiple 
     quizId,

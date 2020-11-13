@@ -46,3 +46,17 @@
 .fa-trash {
   color: red;
 }
+
+.add-to-quiz {
+  margin-right: 50px;
+}
+
+/* .modal {
+  display: none;
+  z-index: 4;
+  position: absolute;
+  width: 1000px;
+  height: 500px;
+  border: 2px solid red;
+  background-color: rgba(255, 255, 255, 0.589);
+} */

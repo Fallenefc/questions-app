@@ -68,3 +68,16 @@ export const createExam = async (title: string) => {
     console.error(err)
   }
 }
+
+export const apiAddQuestionToQuiz = async (questionId: string, quizId: string) => {
+  try {
+    const response: AxiosResponse = await api.post('/addQuestion', {
+      questionId: questionId,
+      _id: quizId
+    })
+    console.log(response);
+    return questionId;
+  } catch (err) {
+    console.error(err);
+  }
+}
