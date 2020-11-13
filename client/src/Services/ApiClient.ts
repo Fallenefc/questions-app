@@ -41,3 +41,12 @@ export const deleteQuestion = async (questionId: string) => {
     console.error(err);
   }
 }
+
+export const getApiQuizzes = async () => {
+  try {
+    const response: AxiosResponse = await api.get('/exams');
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
+}

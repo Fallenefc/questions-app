@@ -10,6 +10,7 @@ export interface ExamRaw {
   questions: string[], // array of question ids
   ownership: string, // teacher ID
   doneBy: SingleExam[],
+  submitted: boolean
 }
 
 export interface Exam {
@@ -20,6 +21,7 @@ export interface Exam {
   ownership: string, // Teacher ID
   doneBy: SingleExam[], // this will show an array of students who finished the exam, and their score
   // availableTo?: string[] // will be implemented in the future. This will be the students in which the exam is available to
+  submitted: boolean
 }
 
 const examSchema: mongoose.Schema<Exam> = new mongoose.Schema({
@@ -27,11 +29,11 @@ const examSchema: mongoose.Schema<Exam> = new mongoose.Schema({
   // timer: Number,
   questions: [String],
   ownership: String,
-  // not sure if this works tbh
   doneBy: [{
     student: String,
     score: Number
   }],
+  submitted: Boolean
 })
 
 export default mongoose.model('Exam', examSchema);

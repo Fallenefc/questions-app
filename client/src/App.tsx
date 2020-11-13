@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import {getInfo, getApiQuestions} from "./Services/ApiClient";
+import {getInfo, getApiQuestions, getApiQuizzes} from "./Services/ApiClient";
 import Routes from "./Pages/Routes";
 import { User } from "./Interfaces/User";
 import {useDispatch} from 'react-redux';
-import {addUser, getQuestions} from './Store/actions';
+import {addUser, getQuestions, getQuizzes} from './Store/actions';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
@@ -19,12 +19,18 @@ function App() {
   useEffect(() => {
     getInfo().then((response): void => {
       if (response) {
-        // console.log(response.data);
+        // Sets status as logged in
+        // Stores user information in Redux store
         setLoggedIn(true);
-        // setUserInfo(response.data)
         dispatch(addUser(response.data));
+        // gets questions and stores the questions in the Redux store
         getApiQuestions().then((response: any) => {
           dispatch(getQuestions(response.data));
+        })
+        // gets quizzes, stores data in the Redux store
+        getApiQuizzes().then((response: any) => {
+          console.log(response.data);
+          dispatch(getQuizzes(response.data));
         })
       }
     }).catch(err => {

@@ -1,5 +1,5 @@
 import { Question } from "../Interfaces/Questions";
-import { Quiz } from "../Interfaces/Quiz";
+import { Quiz, QuizRaw } from "../Interfaces/Quiz";
 import { User } from "../Interfaces/User";
 // import { QuizRaw } from "../Interfaces/Quiz";
 
@@ -10,6 +10,7 @@ export const ADD_QUIZ = 'ADD_QUIZ';
 export const ADD_USER = 'ADD_USER';
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const DELETE_QUESTION = 'DELETE_QUESTION';
+export const GET_QUIZZES = 'GET_QUIZZES';
 
 /**
  * {
@@ -54,4 +55,9 @@ export const addQuestionToQuestionBank = (question: any): Action => ({
 export const deleteQuestionFromQuestionBank = (questionIndex: number): Action => ({
   type: DELETE_QUESTION,
   payload: questionIndex
+})
+
+export const getQuizzes = (quizzes: any): Action => ({
+  type: GET_QUIZZES,
+  payload: quizzes
 })

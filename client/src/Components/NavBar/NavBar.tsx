@@ -14,8 +14,8 @@ const NavBar = () => {
     <div className='left-nav-bar'>
           <button onClick={handleClick} name="viewQuestions">View Questions</button>
           <button onClick={handleClick} name="addQuestion">Add Question</button>
+          <button onClick={handleClick} name='viewQuizzes'>View Quizzes</button>
           <button id='disabled'>Create a Quiz</button>
-          <button id='disabled'>View Quizzes</button>
     </div>
   )
 }

@@ -26,7 +26,8 @@ export const generateExam = async (req: any, res: any): Promise<void> => {
       title: newExamTitle,
       questions: [],
       doneBy: [],
-      ownership: req.user._id
+      ownership: req.user._id,
+      submitted: false
     });
     console.log(`Added to database: ${JSON.stringify(createdExam)}`)
     res.send(createdExam)

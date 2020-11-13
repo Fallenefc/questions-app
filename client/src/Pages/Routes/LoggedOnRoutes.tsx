@@ -5,6 +5,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import QuestionList from "../../Components/QuestionList/QuestionList";
 import AddQuestion from "../AddQuestion/AddQuestion";
 import Dashboard from "../Dashboard/Dashboard";
+import ViewQuizzes from "../ViewQuizzes/ViewQuizzes";
 import './styles.css'
 
 interface Props {
@@ -22,6 +23,7 @@ const LoggedOnRoutes = ({ userInfo }: Props) => {
           	<Route exact path="/" component={() => <Dashboard />} />
           	<Route path="/addQuestion" exact component={AddQuestion} />
 						<Route path="/viewQuestions" exact component={QuestionList} />
+            <Route path="/viewQuizzes" exact component={ViewQuizzes} />
 					</div>
         </Switch>
       </div>
