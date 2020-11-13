@@ -1,5 +1,5 @@
 import express from "express";
-import { generateExam, getExams } from "./controllers/exams";
+import { addQuestionToExam, generateExam, getExams } from "./controllers/exams";
 import {
   deleteQuestion,
   getQuestions,
@@ -33,8 +33,8 @@ router.delete("/questions/:id", authMiddleware, deleteQuestion); // ok!
 
 // EXAM ROUTES
 // create a verify route
-router.post("/exams", authMiddleware, generateExam); // this will create an exam (empty)
-router.post('/addQuestion', authMiddleware, () => console.log("I am placeholder")) // this will add a question to the exam
+router.post("/exams", authMiddleware, generateExam); // this will create an exam (empty) - ok!
+router.post('/addQuestion', authMiddleware, addQuestionToExam) // this will add a question to the exam
 router.delete('/deleteQuestion', authMiddleware, () => console.log("I am placeholder")) // this will delete a question from the exam
 router.post('/generateExam', authMiddleware, () => console.log("I am placeholder")) // this will generate an exam after all the questions are added
 
