@@ -81,3 +81,24 @@ export const apiAddQuestionToQuiz = async (questionId: string, quizId: string) =
     console.error(err);
   }
 }
+
+export const apiDeleteAnExam = async (examId: string) => {
+  try {
+    await api.delete(`/exams/${examId}`);
+    return true;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export const apiDeleteQuestionFromExam = async (examId: string, questionId: string) => {
+  try {
+    await api.post('/deleteQuestion', {
+      examId: examId,
+      questionId: questionId
+    })
+    return true;
+  } catch (err) {
+    console.error(err);
+  }
+}

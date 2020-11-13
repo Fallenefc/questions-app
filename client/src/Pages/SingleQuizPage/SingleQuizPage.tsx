@@ -1,7 +1,9 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
 import { QuestionCard } from '../../Components/QuestionCard/QuestionCard';
-import { getFullQuiz } from '../../Services/ApiClient';
+import { apiDeleteAnExam, getFullQuiz } from '../../Services/ApiClient';
+import { deleteAnExam } from '../../Store/actions';
 import './styles.css'
 
 export default function SingleQuizPage(): ReactElement {
@@ -9,6 +11,9 @@ export default function SingleQuizPage(): ReactElement {
   interface Params {
     quizId: string
   }
+
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const [fullQuiz, setFullQuiz] = useState<any>(null)
   const params: Params = useParams();
@@ -20,6 +25,13 @@ export default function SingleQuizPage(): ReactElement {
     })
   }, [])
 
+  const deleteQuiz = () => {
+    apiDeleteAnExam(params.quizId).then(() => {
+      dispatch(deleteAnExam(params.quizId));
+      history.push({pathname: '/viewQuizzes'})
+    })
+  }
+
   return (
     <div className='single-quiz-container'>
       {fullQuiz ? fullQuiz.title : <div>Loading</div>}
@@ -30,6 +42,7 @@ export default function SingleQuizPage(): ReactElement {
           </div>
         )
       }) : null}
+      <button onClick={deleteQuiz}>Delete Quiz</button>
             <button>Submit Quiz</button>
     </div>
   )

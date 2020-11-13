@@ -10,6 +10,8 @@ export const ADD_USER = 'ADD_USER';
 export const GET_QUESTIONS = 'GET_QUESTIONS';
 export const DELETE_QUESTION = 'DELETE_QUESTION';
 export const GET_QUIZZES = 'GET_QUIZZES';
+export const DELETE_EXAM = 'DELETE_EXAM';
+export const DELETE_QUESTION_FROM_EXAM = 'DELETE_QUESTION_FROM_EXAM';
 
 /**
  * {
@@ -59,4 +61,17 @@ export const deleteQuestionFromQuestionBank = (questionIndex: number): Action =>
 export const getQuizzes = (quizzes: any): Action => ({
   type: GET_QUIZZES,
   payload: quizzes
+})
+
+export const deleteAnExam = (examId: string): Action => ({
+  type: DELETE_EXAM,
+  payload: examId
+})
+
+export const deleteQuestionFromExam = (examId: string, questionId: string): Action => ({
+  type: DELETE_QUESTION_FROM_EXAM,
+  payload: {
+    examId,
+    questionId
+  }
 })

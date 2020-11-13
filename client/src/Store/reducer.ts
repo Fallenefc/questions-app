@@ -1,7 +1,7 @@
 import { Question } from "../Interfaces/Questions";
 import { Quiz } from "../Interfaces/Quiz";
 import { User } from "../Interfaces/User";
-import { Action, ADD_QUESTION_TO_QBANK, ADD_QUESTION_TO_QUIZ, ADD_QUIZ, ADD_USER, DELETE_QUESTION, GET_QUESTIONS, GET_QUIZZES } from "./actions";
+import { Action, ADD_QUESTION_TO_QBANK, ADD_QUESTION_TO_QUIZ, ADD_QUIZ, ADD_USER, DELETE_EXAM, DELETE_QUESTION, DELETE_QUESTION_FROM_EXAM, GET_QUESTIONS, GET_QUIZZES } from "./actions";
 
 const initialState: State = {
   running: null,
@@ -62,6 +62,19 @@ export const reducer = (state = initialState, action: Action) => {
         ...state,
         quizzes: action.payload
       })
+    case DELETE_EXAM:
+      return ({
+        ...state,
+        quizzes: state.quizzes.filter((quiz) => quiz._id !== action.payload)
+      })
+    // case DELETE_QUESTION_FROM_EXAM:
+    //   const findExam = state.quizzes.filter((quiz) => quiz._id === action.payload.examId);
+    //   // this is not finished lol
+    //   return ({
+    //     ...state,
+    //     quizzes: state.quizzes.
+    //   })
+    
     default: 
       return state;
   }
