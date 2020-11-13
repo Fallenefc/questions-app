@@ -18,3 +18,9 @@ background: linear-gradient(0deg,  rgba(145,255,189,1) 100%, rgba(0,251,63,0.964
 .left-nav-bar button:hover {
   background-color: rgb(123, 6, 207);
 }
+
+/* Development Only */
+#disabled { 
+  background-color: grey;
+  cursor: default;
+}

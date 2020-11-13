@@ -21,3 +21,13 @@ export const logIn = async (username: string, password: string) => {
     console.error(err);
   }
 }
+
+export const signUp = async (user: any) => {
+  try {
+    const response = await api.post('/signup', user);
+    return true;
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+}

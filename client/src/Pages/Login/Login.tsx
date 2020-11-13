@@ -17,6 +17,10 @@ export default function Login(): ReactElement {
     else setEmail(event.target.value);
   }
 
+  const handleRedirect = () => {
+    history.push({pathname: '/signup'})
+  }
+
   const handleSubmit = (event: any) => {
     event.preventDefault();
     // make the API request for a login, store the token in the local storage
@@ -30,7 +34,6 @@ export default function Login(): ReactElement {
     // reset 
     setEmail('');
     setPassword('');
-
   }
 
   return (
@@ -52,7 +55,7 @@ export default function Login(): ReactElement {
             <button type='submit'>Forgot Password</button>
           </form>
           <div className='login-container-footer'>
-            Already have an account? <span>Log in here</span>
+            No account? <span onClick={handleRedirect}>Sign up here</span>
           </div>
         </div>
       </div>

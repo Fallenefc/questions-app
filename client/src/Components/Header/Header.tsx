@@ -33,7 +33,7 @@ export default function Header(): ReactElement<React.FC> {
         </div>
       </div>
       <div className="user-logout">
-        <div className="welcome">Welcome, {user?.username}!</div>
+        <div className="welcome">Welcome, {user?.name}!</div>
         <div className="logout-button">
           <button onClick={handleLogout}>Logout</button>
         </div>
