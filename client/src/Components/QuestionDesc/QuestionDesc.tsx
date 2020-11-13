@@ -1,7 +1,7 @@
 import React from "react";
 
 interface Props {
-  info: any
+  info: any,
 }
 
 export const QuestionDesc = ({info}: Props) => {

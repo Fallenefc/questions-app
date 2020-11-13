@@ -24,9 +24,12 @@ export default function SingleQuizPage(): ReactElement {
       {fullQuiz ? fullQuiz.title : <div>Loading</div>}
       {fullQuiz ? fullQuiz.questions.map((question: any, index: any) => {
         return (
-          <QuestionCard info={question} index={index} />
+          <div>
+            <QuestionCard info={question} index={index} quizWindow={true} />
+          </div>
         )
       }) : null}
+            <button>Submit Quiz</button>
     </div>
   )
 }

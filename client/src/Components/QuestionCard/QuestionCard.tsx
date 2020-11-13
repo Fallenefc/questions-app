@@ -11,9 +11,10 @@ import "./styles.css";
 interface Props {
   info: any;
   index: number;
+  quizWindow: boolean;
 }
 
-export const QuestionCard = ({ info, index }: Props) => {
+export const QuestionCard = ({ info, index, quizWindow }: Props) => {
   const [toggled, setToggled] = useState(false);
   const [clickedModal, setClickedModal] = useState(false);
 
@@ -23,40 +24,50 @@ export const QuestionCard = ({ info, index }: Props) => {
     setToggled((toggle) => !toggle);
   };
 
-  const handleDelete = async (questionId: string, questionArrayIndex: number) => {
+  const handleDelete = async (
+    questionId: string,
+    questionArrayIndex: number
+  ) => {
     await deleteQuestion(questionId);
-    // change state...
     dispatch(deleteQuestionFromQuestionBank(questionArrayIndex));
-  }
-
-  // const handleAddToQuiz = async () => {
-  //   // open a model to select which quiz you want to open?
-  //   console.log(quizzes);
-  // }
+  };
 
   const toggleModal = () => {
     setClickedModal((clickedModal) => !clickedModal);
-  }
+  };
 
   return (
     <div className="question-title" key={index}>
       {/* <AddQuestionModal /> */}
-            {clickedModal ? <AddQuestionModal handleClick={toggleModal} questionId={info._id}/> : null}
+      {clickedModal ? (
+        <AddQuestionModal handleClick={toggleModal} questionId={info._id} />
+      ) : null}
       <div className="title-icons">
         <span className="title-dropdown">
-        <span className='add-to-quiz' onClick={toggleModal}>
-          <i className="fa fa-plus"></i>
-          </span>
-          <span  onClick={handleToggle}>
-          <i className="fa fa-caret-down"></i>
-          <span>{info.title}</span>
-          </span>
+          {quizWindow ? null : (
+            <span className="add-to-quiz" onClick={toggleModal}>
+              <i className="fa fa-plus"></i>
+            </span>
+          )}
+          {quizWindow ? (
+            <span>{index+1}. {info.title}</span>
+          ) : (
+            <span onClick={handleToggle}>
+              <i className="fa fa-caret-down"></i>
+              <span>{info.title}</span>
+            </span>
+          )}
         </span>
         <span className="edit-delete">
-          <i className="fa fa-edit"></i> <i className="fa fa-trash" onClick={() => handleDelete(info._id, index)}></i>
+          {quizWindow ? null : <i className="fa fa-edit"></i>}
+          <i
+            className="fa fa-trash"
+            onClick={() => handleDelete(info._id, index)}
+          ></i>
         </span>
       </div>
       {toggled ? <QuestionDesc info={info} /> : null}
+      {quizWindow ? <QuestionDesc info={info} /> : null}
     </div>
   );
 };

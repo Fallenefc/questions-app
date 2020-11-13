@@ -26,7 +26,7 @@ export default function AddQuestionModal({handleClick, questionId}: Props): Reac
       {quizzes.map((quiz) => {
         return <div>
           <button onClick={() => {handleAddQuestionToQuiz(questionId, quiz._id)}}>Add</button>
-          {quiz.title}
+          {quiz.title} ({quiz.questions.length})
           </div>
       })}
       <span onClick={handleClick}>X</span>

@@ -17,7 +17,7 @@ export default function QuestionList(): ReactElement {
     <div className='question-view-container'>
       {questions.map((value, index) => {
         return (
-          <QuestionCard info={value} key={index} index={index}/>
+          <QuestionCard info={value} key={index} index={index} quizWindow={false}/>
         )
       })}
     </div>
