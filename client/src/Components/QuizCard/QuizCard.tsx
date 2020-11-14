@@ -21,7 +21,7 @@ export default function QuizCard({quiz}: Props): ReactElement {
       <br></br>
       Total Questions: {quiz.questions.length}
       <br></br>
-      Submitted: false
+      Submitted: {quiz.submitted ? quiz.hashedId : 'false'}
     </div>
   )
 }

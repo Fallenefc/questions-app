@@ -102,3 +102,12 @@ export const apiDeleteQuestionFromExam = async (examId: string, questionId: stri
     console.error(err);
   }
 }
+
+export const apiGetFullExamAsAStudent = async (examId: string) => {
+  try {
+    const response = await api.get(`/startExam/${examId}`);
+    return response.data;
+  } catch (err) {
+    console.error(err);
+  }
+}

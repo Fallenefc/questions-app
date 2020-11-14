@@ -7,6 +7,7 @@ import AddQuestion from "../AddQuestion/AddQuestion";
 import CreateQuiz from "../CreateQuiz/CreateQuiz";
 import Dashboard from "../Dashboard/Dashboard";
 import SingleQuizPage from "../SingleQuizPage/SingleQuizPage";
+import StudentExam from "../StudentExam/StudentExam";
 import ViewQuizzes from "../ViewQuizzes/ViewQuizzes";
 import './styles.css'
 
@@ -29,6 +30,9 @@ const LoggedOnRoutes = ({ userInfo }: Props) => {
             <Route path="/createQuiz" exact component={CreateQuiz} />
             <Route path="/quiz/:quizId" exact component={SingleQuizPage} />
 					</div>
+        </Switch>
+        <Switch>
+          <Route path="/studentExam/:examId" exact component={StudentExam}/>
         </Switch>
       </div>
     </BrowserRouter>
