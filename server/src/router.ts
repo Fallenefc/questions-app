@@ -9,6 +9,7 @@ import {
   getExams,
   getFullExam,
   studentFinishedExam,
+  studentGetFullExam,
 } from "./controllers/exams";
 import {
   deleteQuestion,
@@ -65,5 +66,7 @@ router.post('/startExam', authMiddleware, fetchExamByHashedId);
 // Make a POST request to submit the completed exam, calculates the score, add score and done on the exam object
 router.post('/finishExam', authMiddleware, studentFinishedExam);
 // Also returns JSON with the score
+router.get('/startExam/:id', authMiddleware, studentGetFullExam);
+
 
 export default router;

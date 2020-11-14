@@ -1,6 +1,7 @@
 import Exams, { Exam, ExamRaw } from '../models/exams';
 import Questions from '../models/question';
 import bcrypt from "bcrypt";
+import {v4 as uuidv4} from 'uuid';
 
 export const getExams = async (req: any, res: any): Promise<void> => {
   try {
@@ -119,13 +120,10 @@ export const deleteAnExam = async (req: any, res: any): Promise<void> => {
 export const generateAnExam  = async (req: any, res: any): Promise<void> => {
   try {
     const examId = req.body.examId;
-    bcrypt.hash(examId, 10, async (err, hashedId) => {
-      if (err) throw new Error();
-      console.log(hashedId)
-      const updatedExam = await Exams.findByIdAndUpdate({_id: examId}, {submitted: true, hashedId});
-      res.status(200);
-      res.send(updatedExam);
-    })
+    const hashedId = uuidv4();
+    const updatedExam = await Exams.findByIdAndUpdate({_id: examId}, {submitted: true, hashedId});
+    res.status(200);
+    res.send(updatedExam);
   } catch (err) {
     res.status(400);
   }
@@ -178,6 +176,34 @@ export const studentFinishedExam = async (req: any, res: any): Promise<void> => 
     await Exams.findOneAndUpdate({hashedId: examHashedId}, {doneBy: exam.doneBy});
     res.status(200);
     res.json({score: exam.doneBy.score});
+  } catch (err) {
+    res.status(400);
+  }
+}
+
+export const studentGetFullExam = async (req: any, res: any): Promise<void> => {
+  try {
+    const examId = req.params.id;
+    const exam = (await Exams.findOne({hashedId: examId})).toObject();
+
+    exam.questions = await Promise.all(exam.questions.map(async (questionId: any) => {
+      const question: any = await getSingleQuestion(questionId);
+      console.log(question);
+      const filteredQuestion = {
+        options: question.options,
+        stem: question.stem
+      }
+      return filteredQuestion;
+    }))
+
+    console.log(exam);
+    if (!exam) throw new Error();
+    res.status(200);
+    res.send({
+      title: exam.title,
+      hashedId: exam.hashedId,
+      options: exam.questions,
+    });
   } catch (err) {
     res.status(400);
   }
