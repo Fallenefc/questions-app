@@ -2,8 +2,11 @@
 	--color-clear: #CCCCCC;
 	--color-primary: #CB2D6F;
 	--color-primary-dark: #501F3a;
+	--color-primary-light: #ff398b;
 	--color-secondary: #14A098;
 	--color-secondary-dark: #0F292F;
+	--color-secondary-darker: #071316;
+	--color-secondary-light: #aabebd;
 }
 
 * {
