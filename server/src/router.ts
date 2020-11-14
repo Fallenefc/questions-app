@@ -3,9 +3,12 @@ import {
   addQuestionToExam,
   deleteAnExam,
   deleteQuestionFromExam,
+  fetchExamByHashedId,
+  generateAnExam,
   generateExam,
   getExams,
   getFullExam,
+  studentFinishedExam,
 } from "./controllers/exams";
 import {
   deleteQuestion,
@@ -56,12 +59,11 @@ router.post("/deleteQuestion", authMiddleware, deleteQuestionFromExam);
 router.get("/results", () => console.log("I am placeholder"));
 
 // Generating Exam Routes
-router.post("/generateExam", authMiddleware, () =>
-  console.log("I am placeholder")
-); // This will set submitted to true
+router.post("/generateExam", authMiddleware, generateAnExam); // This will set submitted to true
 // Makes a GET request without the answers so front end only knows the questions with title, stem and options
-
+router.post('/startExam', authMiddleware, fetchExamByHashedId);
 // Make a POST request to submit the completed exam, calculates the score, add score and done on the exam object
+router.post('/finishExam', authMiddleware, studentFinishedExam);
 // Also returns JSON with the score
 
 export default router;
