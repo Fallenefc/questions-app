@@ -2,9 +2,14 @@ import jwt from 'jsonwebtoken';
 import { SECRET_KEY } from '../environment';
 import { Request, Response } from 'express';
 import { UserModel } from '../models/users';
+import { Document } from 'mongoose'
+
+interface AuthRequest extends Request {
+  user?: Document;
+}
 
 
-const authMiddleware = async (req: any, res: Response, next: any) => { // change any types later
+const authMiddleware = async (req: AuthRequest, res: Response, next: any) => { // change any types later
 
   // Get the token from the header, if there is no token, sends forbidden status
   const authHeader = req.headers.authorization;

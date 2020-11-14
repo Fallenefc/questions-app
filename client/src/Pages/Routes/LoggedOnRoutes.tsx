@@ -17,6 +17,7 @@ interface Props {
 
 const LoggedOnRoutes = ({ userInfo }: Props) => {
   return (
+    <>
     <BrowserRouter>
       <Header />
       <div className="container">
@@ -29,13 +30,12 @@ const LoggedOnRoutes = ({ userInfo }: Props) => {
             <Route path="/viewQuizzes" exact component={ViewQuizzes} />
             <Route path="/createQuiz" exact component={CreateQuiz} />
             <Route path="/quiz/:quizId" exact component={SingleQuizPage} />
+            <Route path="/studentExam/:examId" exact component={StudentExam}/>
 					</div>
-        </Switch>
-        <Switch>
-          <Route path="/studentExam/:examId" exact component={StudentExam}/>
         </Switch>
       </div>
     </BrowserRouter>
+    </>
   );
 };
 

@@ -1,6 +1,5 @@
 import Exams, { Exam, ExamRaw } from '../models/exams';
 import Questions from '../models/question';
-import bcrypt from "bcrypt";
 import {v4 as uuidv4} from 'uuid';
 
 export const getExams = async (req: any, res: any): Promise<void> => {
