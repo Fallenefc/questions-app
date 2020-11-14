@@ -165,7 +165,7 @@ export const fetchExamByHashedId = async (req: any, res: any): Promise<void> => 
 export const studentFinishedExam = async (req: any, res: any): Promise<void> => {
   try {
     const examHashedId = req.body.examHashedId;
-    const correctAnswersArray = req.body.corrects;
+    const correctAnswersArray = req.body.corrects; // make this into an array of objects with question id and answer, or maybe an object with _id as key?
     const userId = req.user._id;
 
     const exam = (await Exams.findOne({hashedId: examHashedId})).toObject();

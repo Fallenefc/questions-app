@@ -1,12 +1,13 @@
 .left-nav-bar {
-  background: rgb(0,251,63);
-background: linear-gradient(0deg,  rgba(145,255,189,1) 100%, rgba(0,251,63,0.9640231092436975) 0%);
+  /* background: var(--color-primary-dark); */
+  background: linear-gradient(0deg,  var(--color-primary-light), var(--color-primary));
   width: 15%;
   min-width: 150px;
 }
 
 .left-nav-bar button {
-  background-color: rgb(87, 27, 129);
+  /* background-color: var(--color-secondary-dark); */
+  background: linear-gradient(90deg, var(--color-secondary-dark), var(--color-secondary));
   border: none;
   cursor: pointer;
   width: 100%;
@@ -16,11 +17,25 @@ background: linear-gradient(0deg,  rgba(145,255,189,1) 100%, rgba(0,251,63,0.964
 }
 
 .left-nav-bar button:hover {
-  background-color: rgb(123, 6, 207);
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-secondary-light));
+  transition: ease 0.3s;
+  color: black;
 }
 
 /* Development Only */
 #disabled { 
   background-color: grey;
   cursor: default;
+}
+
+.student-teacher-choices {
+  background: var(--color-primary-dark);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  width: 100%;
+  height: 50px;
+  color: white;
+  font-weight: 600;
 }

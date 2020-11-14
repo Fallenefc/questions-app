@@ -12,10 +12,14 @@ const NavBar = () => {
 
   return (
     <div className='left-nav-bar'>
+          <div className='student-teacher-choices'>Teacher</div>
           <button onClick={handleClick} name="viewQuestions">View Questions</button>
           <button onClick={handleClick} name="addQuestion">Add Question</button>
           <button onClick={handleClick} name='viewQuizzes'>View Quizzes</button>
           <button onClick={handleClick} name='createQuiz'>Create a Quiz</button>
+          <div className='student-teacher-choices'>Student</div>
+          <button>Add a Quiz</button>
+          <button>Available Quizzes</button>
     </div>
   )
 }
