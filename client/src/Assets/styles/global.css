@@ -1,0 +1,23 @@
+:root {
+	--color-clear: #CCCCCC;
+	--color-primary: #CB2D6F;
+	--color-primary-dark: #501F3a;
+	--color-secondary: #14A098;
+	--color-secondary-dark: #0F292F;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+	height: 100vh;
+}
+
+body {
+	background: var(--color-primary);
+}

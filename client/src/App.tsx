@@ -5,6 +5,7 @@ import Routes from "./Pages/Routes";
 import { User } from "./Interfaces/User";
 import {useDispatch} from 'react-redux';
 import {addUser, getQuestions, getQuizzes} from './Store/actions';
+import './Assets/styles/global.css'
 
 function App() {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);

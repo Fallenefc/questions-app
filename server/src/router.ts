@@ -43,19 +43,25 @@ router.put("/questions/:id", authMiddleware, updateQuestion);
 router.delete("/questions/:id", authMiddleware, deleteQuestion);
 
 // EXAM ROUTES
-// Exam itself routes: Get (all), Get(one), Create, Delete and Generate an exam(after it is done)
+// Exam itself routes: Get (all), Get(one), Create and Delete
 router.get("/exams", authMiddleware, getExams);
 router.get("/singleExam/:examId", authMiddleware, getFullExam);
 router.post("/exams", authMiddleware, generateExam);
 router.delete("/exams/:examId", authMiddleware, deleteAnExam);
-router.post("/generateExam", authMiddleware, () =>
-  console.log("I am placeholder")
-);
+
 
 // Modifying/Adding questions in an exam Routes
 router.post("/addQuestion", authMiddleware, addQuestionToExam);
 router.post("/deleteQuestion", authMiddleware, deleteQuestionFromExam);
-
 router.get("/results", () => console.log("I am placeholder"));
+
+// Generating Exam Routes
+router.post("/generateExam", authMiddleware, () =>
+  console.log("I am placeholder")
+); // This will set submitted to true
+// Makes a GET request without the answers so front end only knows the questions with title, stem and options
+
+// Make a POST request to submit the completed exam, calculates the score, add score and done on the exam object
+// Also returns JSON with the score
 
 export default router;
