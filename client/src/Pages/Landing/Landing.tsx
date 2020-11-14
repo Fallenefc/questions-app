@@ -8,9 +8,11 @@ export default function Landing(): ReactElement {
 
   const history = useHistory();
 
-  const handleClick = () => {
-    history.push({pathname: '/login'})
+  const handleClick = (event: any) => {
+    event.target.name === 'login' ? history.push({pathname: '/login'}) : history.push({pathname: '/signup'});
   }
+
+  const title = 'Boilimax';
 
   return (
     <div className='landing-page'>
@@ -24,16 +26,16 @@ export default function Landing(): ReactElement {
             <img src={logo} height='70px'></img>
           </div>
           <div className='right-content'>
-            <button className='login-btn'>Log In</button>
-            <button className='signup-btn'>Sign Up</button>
+            <button className='login-btn' name='login' onClick={handleClick}>Log In</button>
+            <button className='signup-btn' name='signup' onClick={handleClick}>Sign Up</button>
           </div>
         </div>
         <div className='landing-content'>
           <div className='landing-text'>
-            <h2>Short title description goes brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores cumque minus amet cupiditate molestias, ut quo officia dolor, veniam sed vel doloremque corporis nihil et itaque fuga numquam expedita quis.</p>
-            <button className='login-btn' id="bottom-login">Log In</button>
-            <button className='signup-btn'>Sign Up</button>
+            <h2>With {title}, you can create quizzes for your students in an easy way!</h2>
+            <p>{title} allows you to create your own personal multiple choice question bank. {title} also allows you to create quizzes with these questions and share with your students. Your students can log in, do the exam and you will receive a small report card with their total score!</p>
+            <button className='login-btn' id="bottom-login" name='login' onClick={handleClick}>Log In</button>
+            <button className='signup-btn' name='signup' onClick={handleClick}>Sign Up</button>
           </div>
           <div className='landing-image'>
             <img src={landingHero} height='500px'></img>
@@ -69,7 +71,7 @@ export default function Landing(): ReactElement {
         <div>
           <i className="fa fa-envelope"></i>
           <p>
-            <a href="mailto:support@eduonix.com">arylmoraesn@gmail.com</a>
+            <a href="mailto:arylmoraesn@gmail.com">arylmoraesn@gmail.com</a>
           </p>
         </div>
       </div>
@@ -99,18 +101,5 @@ export default function Landing(): ReactElement {
         </footer>
       </div>
     </div>
-    /* // <div className="landing-page">
-    //   <div className="landing-container">
-    //     <div className="landing-logo">
-    //       <p>Exam App Name</p>
-    //       <img src={landingLogo} width="100%" height="50%"></img>
-    //     </div>
-    //     <div className='login-or-signup'>
-    //       <h1>Hello!</h1>
-    //       <button onClick={handleClick}>Sign In</button>
-    //       <h2>No account? <span>Create one</span></h2>
-    //     </div>
-    //   </div>
-    // </div> */
   );
 }
