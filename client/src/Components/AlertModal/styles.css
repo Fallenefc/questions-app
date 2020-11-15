@@ -1,0 +1,31 @@
+.alert-modal {
+  position: absolute;
+  top: 40%;
+  bottom:40%;
+  left: 35%;
+  right: 35%;
+  width: 30%;
+  height: 20%;
+  background-color: var(--color-secondary-dark);
+  border: 2px solid red;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.alert-modal span {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.alert-modal button {
+  width: 30%;
+  height: 20%;
+  border: none;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 18px;
+}

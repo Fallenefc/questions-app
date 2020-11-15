@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoImg from "../../Assets/logo2.svg";
 import pageImage from "../../Assets/undraw_welcome_cats_thqn.svg";
+import AlertModal from "../../Components/AlertModal/AlertModal";
 import AlertText from "../../Components/AlertText/AlertText";
 import { signUp } from "../../Services/ApiClientUser";
 import "./styles.css";
@@ -17,6 +18,11 @@ const Signup = () => {
     passwordConf: true,
     name: true
   })
+
+  const [alertModal, setAlertModal] = useState(false);
+  const handleAlertModal = () => {
+    setAlertModal(false);
+  }
 
   const history = useHistory();
 
@@ -52,7 +58,7 @@ const Signup = () => {
       name: name,
     });
     if (!response) {
-      alert("Failed to sign up");
+      setAlertModal(true);
       return;
     } else {
       alert("Used signed up successfully!");
@@ -79,6 +85,7 @@ const Signup = () => {
 
   return (
     <div className="login-page">
+      {alertModal ? <AlertModal text='Failed to Sign up. Email most likely already exists' handleAlertModal={handleAlertModal}/> : null}
       <div className="login-container">
         <div className="img-container">
           <img src={pageImage}></img>

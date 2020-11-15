@@ -4,10 +4,12 @@ import pageImage from "../../Assets/undraw_online_test_gba7.svg";
 import logoImg from "../../Assets/logo2.svg";
 import { logIn } from "../../Services/ApiClientUser";
 import { useHistory } from "react-router-dom";
+import AlertModal from "../../Components/AlertModal/AlertModal";
 
 export default function Login(): ReactElement {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [alertModal, setAlertModal] = useState(false);
 
   const history = useHistory();
 
@@ -20,6 +22,10 @@ export default function Login(): ReactElement {
     history.push({ pathname: "/signup" });
   };
 
+  const handleAlertModal = () => {
+    setAlertModal(false);
+  }
+
   const handleSubmit = (event: any) => {
     event.preventDefault();
     // make the API request for a login, store the token in the local storage
@@ -30,7 +36,7 @@ export default function Login(): ReactElement {
         window.location.reload(false);
       })
       .catch((err) => {
-        alert("Failed to log in!");
+        setAlertModal(true);
       });
     // reset
     setEmail("");
@@ -53,6 +59,7 @@ export default function Login(): ReactElement {
           <div className="content-middle">
             <div className="login-title">Log In</div>
             <div className="no-account">
+              {alertModal ? <AlertModal text='Invalid email/password' handleAlertModal={handleAlertModal}/> : null}
               Need a Boilimax account? <span onClick={handleRedirect}>Create an account</span>
             </div>
             <form className="login-form" onSubmit={handleSubmit}>
