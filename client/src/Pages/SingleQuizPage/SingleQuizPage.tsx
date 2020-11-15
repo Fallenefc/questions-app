@@ -34,7 +34,7 @@ export default function SingleQuizPage(): ReactElement {
 
   return (
     <div className='single-quiz-container'>
-      {fullQuiz ? fullQuiz.title : <div>Loading</div>}
+      {fullQuiz ? <div className='quiz-title'>Title: {fullQuiz.title}</div> : <div>Loading</div>}
       {fullQuiz ? fullQuiz.questions.map((question: any, index: any) => {
         return (
           <div>
@@ -42,8 +42,8 @@ export default function SingleQuizPage(): ReactElement {
           </div>
         )
       }) : null}
-      <button onClick={deleteQuiz}>Delete Quiz</button>
-            <button>Submit Quiz</button>
+      <button onClick={deleteQuiz} className='delete-btn'>Delete Quiz</button>
+      <button className='submit-btn'>Submit Quiz</button>
     </div>
   )
 }
