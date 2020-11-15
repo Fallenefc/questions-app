@@ -1,10 +1,14 @@
-
 .question-title {
   width: 80%;
-  background-color: white;
+  background-color: rgb(253, 220, 225);
   margin: 5px;
   padding: 20px;
-  border-radius: 10px;
+  border: 2px solid var(--color-primary-dark);
+}
+
+.question-title:hover {
+  border: 2px solid var(--color-primary-light);
+  background-color: white;
 }
 
 .question-title:first-child {
@@ -50,13 +54,3 @@
 .add-to-quiz {
   margin-right: 50px;
 }
-
-/* .modal {
-  display: none;
-  z-index: 4;
-  position: absolute;
-  width: 1000px;
-  height: 500px;
-  border: 2px solid red;
-  background-color: rgba(255, 255, 255, 0.589);
-} */

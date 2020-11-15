@@ -1,0 +1,30 @@
+.question-description {
+  display: flex;
+  flex-direction: column;
+}
+
+.question-category {
+  float: right;
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 15px;
+  padding: 10px;
+  color: rgb(95, 95, 95);
+}
+
+.question-stem {
+  padding-top: 15px;
+  font-size: 18px;
+  padding-bottom: 15px;
+}
+
+.question-option {
+  padding-top: 10px;
+  font-size: 18px;
+  padding-bottom: 4px;
+}
+
+.correct {
+  padding-top: 10px;
+  font-weight: 600;
+}

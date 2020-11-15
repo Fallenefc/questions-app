@@ -4,6 +4,7 @@
   color: white;
   padding: 10px;
   display: flex;
+  height: 9%;
   justify-content: space-between;
 }
 
@@ -36,4 +37,5 @@
 .logout-button button:hover {
   background-color: var(--color-secondary-light);
   color: black;
+  transition: 0.5s ease;
 }

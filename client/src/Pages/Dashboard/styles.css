@@ -4,7 +4,7 @@
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  height: 90vh;
+  height: 100%;
   background: var(--color-secondary-dark);
   color: white;
   /* background: rgb(234,144,244); */
@@ -22,6 +22,6 @@
 }
 
 #special {
-  color: var(--color-secondary-light);
+  color: var(--color-primary-light);
   font-weight: 600;
 }

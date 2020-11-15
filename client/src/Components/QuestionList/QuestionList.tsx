@@ -8,7 +8,6 @@ export default function QuestionList(): ReactElement {
 
   const questions = useSelector((state: State) => state.questions);
 
-
   useEffect(() => {
     console.log(questions)
   })
