@@ -15,7 +15,7 @@ export default function ViewQuizzes(): ReactElement {
   return (
     <div className='quiz-view-container'>
       {quizzes.map((quiz: any, index) => {
-        return <div><QuizCard quiz={quiz} key={index}/></div>
+        return <div className='quiz-card'><QuizCard quiz={quiz} key={index}/></div>
       })}
     </div>
   )

@@ -1,0 +1,28 @@
+.createquiz-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.createquiz-container input, .createquiz-container button {
+  width: 100%;
+}
+
+.addquiz-btn {
+  background-color: var(--color-secondary-light);
+  color: black
+}
+
+.addquiz-btn:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+.addquiz-text {
+  font-size: 30px;
+  margin: auto;
+  padding-bottom: 20px;
+  font-weight: 600;
+  color: white;
+}

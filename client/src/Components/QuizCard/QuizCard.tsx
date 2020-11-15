@@ -17,11 +17,13 @@ export default function QuizCard({quiz}: Props): ReactElement {
 
   return (
     <div className='padding' onClick={() => handleClick(quiz._id)}>
-      {quiz.title}
-      <br></br>
-      Total Questions: {quiz.questions.length}
-      <br></br>
-      Submitted: {quiz.submitted ? quiz.hashedId : 'false'}
+      <div className='quizcard-title'>
+        {quiz.title}
+      </div>
+      <div className='total-questions'>
+       Total Questions: {quiz.questions.length}
+      </div>
+        {quiz.submitted ? <div className='submitted'>Quiz ID: {quiz.hashedId}</div> : <div className='submitted'>Not Submitted</div>}
     </div>
   )
 }

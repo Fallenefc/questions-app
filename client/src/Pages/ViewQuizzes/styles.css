@@ -6,6 +6,11 @@
   justify-content: flex-start;
   align-items: center;
   overflow-x: hidden;
-  background: rgb(234,144,244);
-  background: linear-gradient(0deg, rgba(234,144,244,0.9640231092436975) 0%, rgba(174,45,253,1) 100%);
+  background: var(--color-primary);
+}
+
+.quiz-card {
+  border: 2px solid var(--color-primary-dark);
+  width: 60%;
+  margin-top: 30px;
 }

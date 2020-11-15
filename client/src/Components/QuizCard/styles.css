@@ -1,7 +1,27 @@
 .padding {
   padding: 20px;
   background-color: white;
-  margin: 10px;
-  border-radius: 20px;
-  width: 600px;
+}
+
+.padding:hover {
+  background-color: pink;
+  cursor: pointer;
+}
+
+.quizcard-title {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 25px;
+  text-transform: uppercase;
+}
+
+.total-questions {
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.submitted {
+  margin-top: 15px;
+  font-size: 18px;
+  font-weight: 600;
 }
