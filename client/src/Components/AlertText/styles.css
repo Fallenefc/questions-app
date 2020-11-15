@@ -1,0 +1,9 @@
+.alert-text {
+  margin-top: 2px;
+  color: red;
+  margin-left: 5px;
+}
+
+.alert-text i {
+  margin-right: 5px;
+}

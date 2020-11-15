@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import logoImg from "../../Assets/logo2.svg";
 import pageImage from "../../Assets/undraw_welcome_cats_thqn.svg";
+import AlertText from "../../Components/AlertText/AlertText";
 import { signUp } from "../../Services/ApiClientUser";
 import "./styles.css";
 
@@ -10,23 +11,40 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [passwordConf, setPasswordConf] = useState("");
   const [name, setName] = useState("");
+  const [validationObj, setValidationObj] = useState ({
+    email: true,
+    password: true,
+    passwordConf: true,
+    name: true
+  })
 
   const history = useHistory();
 
   const handleSubmit = async (event: any) => {
+    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
     event.preventDefault();
-    if (!password || !passwordConf || !email || !name) {
-      alert("Missing one or more fields");
-      return;
+    let isAnythingInvalid = false;
+    const validationObjCopy = {...validationObj};
+    if (!email.match(emailRegex)) {
+      validationObjCopy.email = false;
+      isAnythingInvalid = true;
+    }
+    if (name === '') {
+      validationObjCopy.name = false;
+      isAnythingInvalid = true;
     }
     if (password !== passwordConf) {
-      alert("Passwords do not match");
-      return;
+      validationObjCopy.passwordConf = false;
+      isAnythingInvalid = true;
     }
     if (password.length < 6 || password.length > 18) {
-      alert("Password lenght must be between 6 and 18");
-      return;
+      validationObjCopy.password = false;
+      isAnythingInvalid = true;
     }
+    if (isAnythingInvalid) {
+      setValidationObj(validationObjCopy);
+      return;
+    };
     // add email validation regex
     const response = await signUp({
       username: email,
@@ -85,6 +103,7 @@ const Signup = () => {
                 onChange={handleChange}
                 value={email}
               ></input>
+              {validationObj.email ? null : <AlertText text={'Email format is not valid'} />}
               <p>Password</p>
               <input
                 type="password"
@@ -92,6 +111,7 @@ const Signup = () => {
                 onChange={handleChange}
                 value={password}
               ></input>
+              {validationObj.password ? null : <AlertText text={'Password must have between 6 and 18 characters'} />}
               <p>Confirm your password</p>
               <input
                 type="password"
@@ -99,6 +119,7 @@ const Signup = () => {
                 onChange={handleChange}
                 value={passwordConf}
               ></input>
+              {validationObj.passwordConf ? null : <AlertText text={'Passwords do not match'} />}
               <p>Name</p>
               <input
                 type="text"
@@ -106,6 +127,7 @@ const Signup = () => {
                 onChange={handleChange}
                 value={name}
               ></input>
+              {validationObj.name ? null : <AlertText text={'Name cannot be empty'} />}
               <span className="keep-logged">
                 <span>I agree with the <span className='green'>Terms and Conditions</span></span>
                 <input type="checkbox"></input>
