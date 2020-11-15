@@ -37,19 +37,23 @@ export default function Login(): ReactElement {
     setPassword("");
   };
 
+  const redirectToHome = () => {
+    history.push({ pathname: '/' })
+  }
+
   return (
     <div className="login-page">
       <div className="login-container">
         <div className="login-form-container">
           <div className="content-top">
             <div className="login-icon">
-              <img src={logoImg} width="100px"></img>
+              <img src={logoImg} width="100px" onClick={redirectToHome}></img>
             </div>
           </div>
           <div className="content-middle">
             <div className="login-title">Log In</div>
             <div className="no-account">
-              Need a Boilimax account? <span>Create an account</span>
+              Need a Boilimax account? <span onClick={handleRedirect}>Create an account</span>
             </div>
             <form className="login-form" onSubmit={handleSubmit}>
               <p>Email</p>
@@ -75,7 +79,7 @@ export default function Login(): ReactElement {
           </div>
           <div className="login-container-footer">
             <span>Forgot username?</span>
-            <span onClick={handleRedirect}>Forgot password?</span>
+            <span>Forgot password?</span>
           </div>
         </div>
         <div className="img-container">

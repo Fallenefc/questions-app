@@ -65,11 +65,14 @@
 .no-account span {
   color: var(--color-secondary);
   text-decoration: underline;
+  cursor: pointer;
 }
 
 form input {
   height: 40px;
   width: 80%;
+  padding-left: 15px;
+  font-size: 17px;
 }
 
 form p {
@@ -92,6 +95,7 @@ form button {
   color: white;
   font-size: 18px;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 form button:hover {
@@ -118,6 +122,7 @@ form button:hover {
   font-size: 20px;
   color: var(--color-secondary-dark);
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .img-container {
@@ -128,4 +133,8 @@ form button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.login-icon img {
+  cursor: pointer;
 }
