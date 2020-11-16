@@ -77,11 +77,13 @@ export const getFullExam = async (req: any, res: any): Promise<void> => {
     // Mongoose will return a full model, so I have to use toObject method to transform that model into the object
     const exam: any = (await Exams.findOne({_id: req.params.examId})).toObject();
     // map will return a stream of promises, so I have to wrap it into Promise.all
-    exam.questions = await Promise.all(exam.questions.map(async (questionId: any) => {
-      const question = await getSingleQuestion(questionId);
-      console.log(question);
-      return question;
-    }))
+    // exam.questions = await Promise.all(exam.questions.map(async (questionId: any) => {
+    //   const question = await getSingleQuestion(questionId);
+    //   console.log(question);
+    //   return question;
+    // }))
+    const fetchedQuestions = await Questions.find().where('_id').in(exam.questions);
+    exam.questions = fetchedQuestions;
     res.status(200);
     res.send(exam);
   } catch (err) {
@@ -185,23 +187,32 @@ export const studentGetFullExam = async (req: any, res: any): Promise<void> => {
     const examId = req.params.id;
     const exam = (await Exams.findOne({hashedId: examId})).toObject();
 
-    exam.questions = await Promise.all(exam.questions.map(async (questionId: any) => {
-      const question: any = await getSingleQuestion(questionId);
-      console.log(question);
-      const filteredQuestion = {
-        options: question.options,
-        stem: question.stem
-      }
-      return filteredQuestion;
-    }))
+    // exam.questions = await Promise.all(exam.questions.map(async (questionId: any) => {
+    //   const question: any = await getSingleQuestion(questionId);
+    //   // if (!question) return // DO SOMETHING WHEN IT DOESNT EXIST ANYMORE!
+    //   console.log(question);
+    //   const filteredQuestion = {
+    //     options: question.options,
+    //     stem: question.stem
+    //   }
+    //   return filteredQuestion;
+    // }))
 
-    console.log(exam);
+    const fetchedQuestions = await Questions.find().where('_id').in(exam.questions);
+    const filteredQuestions = fetchedQuestions.map((value: any) => {
+      return ({
+        options: value.options,
+        stem: value.stem
+      })
+    })
+
+    // console.log(exam);
     if (!exam) throw new Error();
     res.status(200);
     res.send({
       title: exam.title,
       hashedId: exam.hashedId,
-      options: exam.questions,
+      options: filteredQuestions,
     });
   } catch (err) {
     res.status(400);

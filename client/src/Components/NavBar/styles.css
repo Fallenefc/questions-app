@@ -24,7 +24,7 @@
 
 /* Development Only */
 #disabled { 
-  background-color: grey;
+  background-color: grey !important;
   cursor: default;
 }
 

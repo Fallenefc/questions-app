@@ -22,7 +22,7 @@ const authMiddleware = async (req: AuthRequest, res: Response, next: any) => { /
     // If user does not exist in the database
     if (!user) return res.sendStatus(401);
     req.user = user;
-    console.log(user)
+    // console.log(user)
     next();
   // if user is not verified
   } catch (error) {

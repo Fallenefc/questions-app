@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import "./styles.css";
-import pageImage from "../../Assets/undraw_online_test_gba7.svg";
+import pageImage from "../../Assets/login-hero.svg";
 import logoImg from "../../Assets/logo2.svg";
 import { logIn } from "../../Services/ApiClientUser";
 import { useHistory } from "react-router-dom";
@@ -90,7 +90,7 @@ export default function Login(): ReactElement {
           </div>
         </div>
         <div className="img-container">
-          <img src={pageImage}>
+          <img src={pageImage} width='90%'>
           </img>
         </div>
       </div>
