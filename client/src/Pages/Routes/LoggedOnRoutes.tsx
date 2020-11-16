@@ -11,13 +11,8 @@ import StudentExam from "../StudentExam/StudentExam";
 import ViewQuizzes from "../ViewQuizzes/ViewQuizzes";
 import './styles.css'
 
-interface Props {
-  userInfo: any;
-}
-
-const LoggedOnRoutes = ({ userInfo }: Props) => {
+const LoggedOnRoutes = () => {
   return (
-    <>
     <BrowserRouter>
       <Header />
       <div className="container">
@@ -35,7 +30,6 @@ const LoggedOnRoutes = ({ userInfo }: Props) => {
         </Switch>
       </div>
     </BrowserRouter>
-    </>
   );
 };
 

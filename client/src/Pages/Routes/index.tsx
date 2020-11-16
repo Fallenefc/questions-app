@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Routes: any = ({userInfo}: Props) => {
-	return userInfo ? <LoggedOnRoutes userInfo={userInfo} /> : <LoggedOffRoutes />;
+	return userInfo ? <LoggedOnRoutes /> : <LoggedOffRoutes />;
 };
 
 export default Routes;

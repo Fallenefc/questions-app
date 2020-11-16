@@ -52,8 +52,8 @@ export default function Login(): ReactElement {
       <div className="login-container">
         <div className="login-form-container">
           <div className="content-top">
-            <div className="login-icon">
-              <img src={logoImg} width="100px" onClick={redirectToHome} alt='logo'></img>
+            <div className="login-icon" onClick={redirectToHome}>
+              <img src={logoImg} width="100px" alt='logo'></img>
             </div>
           </div>
           <div className="content-middle">
