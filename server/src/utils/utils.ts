@@ -5,11 +5,9 @@ export const examScoreCalculator = async (studentAnswers: any, questionsIdsArray
   let correct = 0;
   let total = 0;
 
-  // const allQuestions = Object.keys(studentAnswers);
   const fetchedQuestions = await Questions.find().where('uuid').in(questionsIdsArray);
 
   fetchedQuestions.forEach((question: any) => {
-    // console.log(studentAnswers[question._id.toString()])
     if (studentAnswers[question.uuid] === question.correct) correct++;
     total++
   })

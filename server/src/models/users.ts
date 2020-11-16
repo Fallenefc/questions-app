@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 export interface UserInterface {
   username: string,
   password: string,
-  name?: string,
+  name: string,
   resetPasswordLink: string,
   _id: string,
   __v?: number

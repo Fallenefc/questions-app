@@ -1,8 +1,14 @@
-import Questions, {Question, QuestionRaw} from '../models/question'
+import Questions, {QuestionRaw} from '../models/question'
 import {Document} from 'mongoose'
 import {v4 as uuidv4} from 'uuid';
+import { Request, Response } from 'express';
 
-export const getQuestions = async (req: any, res: any): Promise<void> => {
+export interface AuthRequest extends Request {
+  user: any,
+  body: any
+}
+
+export const getQuestions = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     const questions = await Questions.find({ownership: req.user._id}); // find and provide the query with teacher id (using ownership)
     res.status(200);
@@ -13,39 +19,31 @@ export const getQuestions = async (req: any, res: any): Promise<void> => {
   }
 }
 
-// Added a 400 status code for missing params
-
-export const postQuestion = async (req: any, res: any): Promise<void> => {
+export const postQuestion = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     const newQuestion: QuestionRaw = req.body; // enforce question interface
-    // const requiredFields = ['stem', 'title', 'correct', 'category'];
-    // if (!(Object.keys(newQuestion).every((key) => requiredFields.includes(key)))) {
-    //   res.status(400);
-    //   return res.send({
-    //     error: "You are missing one (or more) of the params!"
-    //   })
-    // }
     if (!newQuestion.stem || newQuestion.options.length < 2 || newQuestion.correct === undefined || !newQuestion.category) {
-      res.status(418);
-      return res.send({
+      res.status(400);
+      res.send({
         error: "You are missing one (or more) of the params!"
-      })
+      });
+      return;
     }
-    const hashedId = uuidv4();
+    const hashedId = uuidv4(); // this is not really hashed but I will hash it a later version
     const createdQuestion: Document = await Questions.create<QuestionRaw>({
       ...newQuestion,
       ownership: req.user._id,
       uuid: hashedId
-    }); // check for mongoose document type
+    });
     console.log(`Added to database: ${JSON.stringify(newQuestion)}`)
-    res.send(createdQuestion)
+    res.send(createdQuestion);
   }
   catch (e) {
     console.error(`Error adding an event to the database: ${e}`)
   }
 }
 
-export const updateQuestion = async (req: any, res: any): Promise<void> => {
+export const updateQuestion = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     const questionId = req.params.id;
     const filter = { _id: questionId };
@@ -61,7 +59,7 @@ export const updateQuestion = async (req: any, res: any): Promise<void> => {
   }
 }
 
-export const deleteQuestion = async (req: any, res: any): Promise<void> => {
+export const deleteQuestion = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     // search question by id, so just deletes it
     const questionId: string = req.params.id;

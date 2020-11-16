@@ -10,7 +10,6 @@ import {
   getFullExam,
   studentFinishedExam,
   studentGetFullExam,
-  testFunction,
 } from "./controllers/exams";
 import {
   deleteQuestion,
@@ -30,6 +29,7 @@ import authMiddleware from "./middleware/auth";
 const router = express.Router();
 
 // USER Auth Routes
+
 // Login and Signup
 router.post("/signup", registerUser);
 router.post("/login", userLogIn);
@@ -37,38 +37,42 @@ router.post("/login", userLogIn);
 // Forgot password, Reset Password, Logout
 router.post("/forgotPassword", forgotPassword);
 router.post("/resetPassword", resetPassword);
-// router.post("/logout", () => console.log("I am placeholder")); // this wont do anything for now, but I will destroy the token on the client side
 router.get("/me", authMiddleware, getUserInfo);
 
+//
+
 // QUESTION BANK ROUTES
+
 // Get, Post, Update and Delete questions. Pretty straight forward
 router.get("/questions", authMiddleware, getQuestions);
 router.post("/questions", authMiddleware, postQuestion);
 router.put("/questions/:id", authMiddleware, updateQuestion);
 router.delete("/questions/:id", authMiddleware, deleteQuestion);
 
-// EXAM ROUTES
+//
+
+// EXAM ROUTES (TEACHER)
+
 // Exam itself routes: Get (all), Get(one), Create and Delete
 router.get("/exams", authMiddleware, getExams);
 router.get("/singleExam/:examId", authMiddleware, getFullExam);
 router.post("/exams", authMiddleware, generateExam);
 router.delete("/exams/:examId", authMiddleware, deleteAnExam);
-
+router.post("/startExam", authMiddleware, fetchExamByHashedId);
 
 // Modifying/Adding questions in an exam Routes
 router.post("/addQuestion", authMiddleware, addQuestionToExam);
 router.post("/deleteQuestion", authMiddleware, deleteQuestionFromExam);
-router.get("/results", () => console.log("I am placeholder"));
 
 // Generating Exam Routes
-router.post("/generateExam", authMiddleware, generateAnExam); // This will set submitted to true
-// Makes a GET request without the answers so front end only knows the questions with title, stem and options
-router.post('/startExam', authMiddleware, fetchExamByHashedId);
-// Make a POST request to submit the completed exam, calculates the score, add score and done on the exam object
-router.post('/finishExam', authMiddleware, studentFinishedExam);
-// Also returns JSON with the score
-router.get('/startExam/:id', authMiddleware, studentGetFullExam);
+router.post("/generateExam", authMiddleware, generateAnExam);
 
-router.post('/testRoute', authMiddleware, testFunction);
+//
+
+// EXAM ROUTES (STUDENT)
+
+// Fetch Exam, Finish Exam and
+router.post("/finishExam", authMiddleware, studentFinishedExam);
+router.get("/startExam/:id", authMiddleware, studentGetFullExam);
 
 export default router;

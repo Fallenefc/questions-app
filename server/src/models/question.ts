@@ -22,11 +22,8 @@ const questionSchema: mongoose.Schema<QuestionRaw> = new mongoose.Schema({
   stem: String,
   category: String,
   options: [String],
-  correct: Number, // This is gonna be the index
-
-  // I am going to start it by making ownership to be the creator's email, but later will probably change it to a specific reference with mongoose
+  correct: Number,
   ownership: String,
-    // This will (or will not be) implemented later
   done: Boolean,
   difficulty: String,
   uuid: String,

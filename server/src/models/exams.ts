@@ -1,5 +1,4 @@
-import mongoose, { Mongoose } from 'mongoose';
-import { Question } from './question';
+import mongoose from 'mongoose';
 
 interface SingleExam {
   studentId: string,

@@ -8,8 +8,7 @@ interface AuthRequest extends Request {
   user?: Document;
 }
 
-
-const authMiddleware = async (req: AuthRequest, res: Response, next: any) => { // change any types later
+const authMiddleware = async (req: AuthRequest, res: Response, next: any) => {
 
   // Get the token from the header, if there is no token, sends forbidden status
   const authHeader = req.headers.authorization;
@@ -22,7 +21,6 @@ const authMiddleware = async (req: AuthRequest, res: Response, next: any) => { /
     // If user does not exist in the database
     if (!user) return res.sendStatus(401);
     req.user = user;
-    // console.log(user)
     next();
   // if user is not verified
   } catch (error) {
