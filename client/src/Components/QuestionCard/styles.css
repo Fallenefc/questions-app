@@ -1,9 +1,10 @@
 .question-title {
   width: 80%;
-  background-color: rgb(253, 220, 225);
+  /* background-color: rgb(253, 220, 225); */
   margin: 5px;
   padding: 20px;
-  border: 2px solid var(--color-primary-dark);
+  background-color: white;
+  border: 2px solid #e7e7e7;
 }
 
 .question-title:hover {
