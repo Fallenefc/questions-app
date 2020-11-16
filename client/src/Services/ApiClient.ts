@@ -124,3 +124,14 @@ export const submitAnExamAsAStudent = async (examId: string, answers: any, quest
     console.error(err);
   }
 }
+
+export const submitAnExamAsATeacher = async (examId: string) => {
+  try {
+    const response = await api.post('/generateExam', {
+      examId: examId
+    });
+    return response.data;
+  } catch (err) {
+    console.error(err);
+  }
+}

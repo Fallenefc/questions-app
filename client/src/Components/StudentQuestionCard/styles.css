@@ -9,3 +9,7 @@
 .student-question-stem:first-child {
   margin-top: 20px;
 }
+
+.options-container{
+  margin-top: 5px;
+}

@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { QuestionCard } from '../../Components/QuestionCard/QuestionCard';
-import { apiDeleteAnExam, getFullQuiz, submitAnExamAsAStudent } from '../../Services/ApiClient';
+import { apiDeleteAnExam, getFullQuiz, submitAnExamAsAStudent, submitAnExamAsATeacher } from '../../Services/ApiClient';
 import { deleteAnExam } from '../../Store/actions';
 import './styles.css'
 
@@ -16,12 +16,14 @@ export default function SingleQuizPage(): ReactElement {
   const history = useHistory();
 
   const [fullQuiz, setFullQuiz] = useState<any>(null)
+  const [submittedQuiz, setSubmittedQuiz] = useState<boolean>(false);
   const params: Params = useParams();
 
   useEffect(() => {
     getFullQuiz(params.quizId).then((response: any) => {
       console.log(response.data);
       setFullQuiz(response.data);
+      if (response.data.submitted === true) setSubmittedQuiz(true);
     })
   }, [])
 
@@ -30,6 +32,12 @@ export default function SingleQuizPage(): ReactElement {
       dispatch(deleteAnExam(params.quizId));
       history.push({pathname: '/viewQuizzes'})
     })
+  }
+
+  const submitQuiz = async () => {
+    const response = submitAnExamAsATeacher(fullQuiz._id);
+    // use Redux to change the quiz state...
+    history.push({pathname: '/viewQuizzes'});
   }
 
   return (
@@ -43,7 +51,7 @@ export default function SingleQuizPage(): ReactElement {
         )
       }) : null}
       <button onClick={deleteQuiz} className='delete-btn'>Delete Quiz</button>
-      <button className='submit-btn'>Submit Quiz</button>
+      {submittedQuiz ? null : <button className='submit-btn' onClick={submitQuiz}>Submit Quiz</button>}
     </div>
   )
 }
