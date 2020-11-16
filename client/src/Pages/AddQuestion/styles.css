@@ -1,16 +1,34 @@
+.add-question-container {
+  height: 100%;
+  width: 100%;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .question-form {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  padding-left: 40px;
+  padding-top: 50px;
   height: 100%;
-  width: 100%;
-  background: var(--color-primary);
+  overflow-y: scroll;
+  width: 80%;
+  background: white;
+  box-shadow: 2px 9px 10px 8px #ffe4e1;
+
 }
 
 .question-form input {
-  width: 500px;
+  width: 90%;
   height: 40px;
+}
+
+.question-form p{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #question-title {
@@ -29,16 +47,32 @@
 .bottom-buttons button {
   margin: 30px;
   border: none;
-  background-color: red;
   color: white;
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 5px;
+  font-size: 20px;
   text-decoration: none;
   font-weight: 700;
+  padding-bottom: 40px;
 }
 
 .bottom-buttons button:first-child {
-  background-color: teal;
+  background-color: var(--color-secondary-light);
+  color: black;
+}
+
+.bottom-buttons button:first-child:hover {
+  background-color: var(--color-secondary-dark);
+  color: white;
+}
+
+.bottom-buttons button:last-child {
+  background-color: var(--color-secondary-dark);
+}
+
+.bottom-buttons button:last-child:hover {
+  background-color: var(--color-secondary-light);
+  color: black;
 }
 
 .question-page {
@@ -57,7 +91,32 @@
   min-width: 80px;
 }
 
-.options input {
-  min-width: 500px;
-  width: 60%;
+.delete-button {
+  background-color: red;
+  width: 100%;
+  margin-right: 100px;
+  border-radius: 10px;
+}
+
+.delete-button:hover {
+  background-color: rgb(71, 3, 3);
+}
+
+.option-input {
+  width: 70%;
+}
+
+.option-input-radio {
+  width: 5%;
+}
+
+.delete-button-container {
+  width: 5%;
+}
+
+textarea {
+  padding: 10px;
+  font-size: 17px;
+  width: 90%;
+  font-family: Ubuntu;
 }

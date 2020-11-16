@@ -9,7 +9,7 @@ export default function AddQuestion(): ReactElement {
 
   const [options, setOptions] = useState(["", "", ""]);
   const [stem, setStem] = useState("");
-  const [correct, setCorrect] = useState(0);
+  const [correct, setCorrect] = useState<number | null>(null);
   const [title, setTitle] = useState("");
 
   const dispatch = useDispatch();
@@ -47,11 +47,13 @@ export default function AddQuestion(): ReactElement {
   // Makes the API call and updates the state, redirect to view questions
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(title, stem, correct)
-    if (!title || !stem || correct === undefined) {
-      alert("Missing one or more params");
+    console.log(title, stem, correct);
+
+    if (!title || !stem || correct === null) {
+      alert("Missing one or more params, or you did not define a correct answer");
       return;
     }
+
     const response = await postQuestion({
       title: title,
       stem: stem,
@@ -60,51 +62,62 @@ export default function AddQuestion(): ReactElement {
       category: "Test",
     });
     if (response) dispatch(addQuestionToQuestionBank(response.data));
+
+    setOptions(["", "", ""]);
+    setStem('');
+    setTitle('');
+    setCorrect(null);
   };
 
   return (
-    <form className="question-form">
-      <p>Question Title</p>
-      <input
-        type="textarea"
-        placeholder="Question Title"
-        id="question-title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <p>Question Stem</p>
-      <input
-        type="textarea"
-        placeholder="Question Stem"
-        id="question-stem"
-        value={stem}
-        onChange={(e) => setStem(e.target.value)}
-      />
-      {options.map((option: string, index: number) => {
-        return (
-          <div className="options">
-            <span>Option #{index + 1}</span>
-            <input
-              type="text"
-              value={options[index]}
-              onChange={(event) => {
-                handleChange(event, index);
-              }}
-            ></input>
-            <input
-              type="radio"
-              name="correct"
-              value={index}
-              onChange={() => setCorrect(index)}
-            ></input>
-            <button onClick={(event) => deleteOption(event, index)}>X</button>
-          </div>
-        );
-      })}
-      <div className="bottom-buttons">
-        <button onClick={addAlternative}>Add Option</button>
-        <button onClick={(event) => handleSubmit(event)}>Submit</button>
-      </div>
-    </form>
+    <div className="add-question-container">
+      <form className="question-form">
+        <p>Question Title</p>
+        <input
+          type="text"
+          placeholder="Question Title"
+          id="question-title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <p>Question Stem</p>
+        <textarea
+          placeholder="Question Stem"
+          id="question-stem"
+          value={stem}
+          onChange={(e) => setStem(e.target.value)}
+        />
+        {options.map((option: string, index: number) => {
+          return (
+            <div className="options">
+              <span>Option #{index + 1}</span>
+              <span className="option-input">
+                <input
+                  type="text"
+                  value={options[index]}
+                  onChange={(event) => {
+                    handleChange(event, index);
+                  }}
+                ></input>
+              </span>
+              <i className="fa fa-check fa-2x" id='correct'></i>
+              <span className="option-input-radio">
+                <input
+                  type="radio"
+                  name="correct"
+                  value={index}
+                  onChange={() => setCorrect(index)}
+                ></input>
+              </span>
+              <i className="fa fa-3x fa-trash" onClick={(event) => deleteOption(event, index)}></i>
+            </div>
+          );
+        })}
+        <div className="bottom-buttons">
+          <button onClick={addAlternative}>Add Option</button>
+          <button onClick={(event) => handleSubmit(event)}>Submit</button>
+        </div>
+      </form>
+    </div>
   );
 }
