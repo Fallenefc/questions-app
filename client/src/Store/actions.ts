@@ -1,7 +1,6 @@
 import { Question } from "../Interfaces/Questions";
-import { Quiz, QuizRaw } from "../Interfaces/Quiz";
+import { Quiz } from "../Interfaces/Quiz";
 import { User } from "../Interfaces/User";
-// import { QuizRaw } from "../Interfaces/Quiz";
 
 export const ADD_QUESTION_TO_QUIZ = 'ADD_QUESTION_TO_QUIZ';
 export const ADD_QUESTION_TO_QBANK = 'ADD_QUESTION_TO_QBANK';
@@ -12,13 +11,6 @@ export const DELETE_QUESTION = 'DELETE_QUESTION';
 export const GET_QUIZZES = 'GET_QUIZZES';
 export const DELETE_EXAM = 'DELETE_EXAM';
 export const DELETE_QUESTION_FROM_EXAM = 'DELETE_QUESTION_FROM_EXAM';
-
-/**
- * {
- *   type: enum of actions
- *   payload: any
- * }
- */
 
 export interface Action {
   type: string,
@@ -33,7 +25,7 @@ export const addQuestionToQuiz = (quizId: string, question: string): Action => (
   },
 });
 
-export const addQuiz = (quiz: any): Action => ({
+export const addQuiz = (quiz: Quiz): Action => ({
   type: ADD_QUIZ,
   payload: quiz
 })

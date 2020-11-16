@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useState } from "react";
 import "./styles.css";
 import pageImage from "../../Assets/login-hero.svg";
 import logoImg from "../../Assets/logo2.svg";
@@ -53,7 +53,7 @@ export default function Login(): ReactElement {
         <div className="login-form-container">
           <div className="content-top">
             <div className="login-icon">
-              <img src={logoImg} width="100px" onClick={redirectToHome}></img>
+              <img src={logoImg} width="100px" onClick={redirectToHome} alt='logo'></img>
             </div>
           </div>
           <div className="content-middle">
@@ -90,7 +90,7 @@ export default function Login(): ReactElement {
           </div>
         </div>
         <div className="img-container">
-          <img src={pageImage} width='90%'>
+          <img src={pageImage} width='90%' alt='hero'>
           </img>
         </div>
       </div>

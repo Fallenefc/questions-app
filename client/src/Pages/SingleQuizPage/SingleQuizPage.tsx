@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { QuestionCard } from '../../Components/QuestionCard/QuestionCard';
-import { apiDeleteAnExam, getFullQuiz, submitAnExamAsAStudent, submitAnExamAsATeacher } from '../../Services/ApiClient';
+import { apiDeleteAnExam, getFullQuiz, submitAnExamAsATeacher } from '../../Services/ApiClient';
 import { deleteAnExam } from '../../Store/actions';
 import './styles.css'
 
@@ -37,6 +37,7 @@ export default function SingleQuizPage(): ReactElement {
   const submitQuiz = async () => {
     const response = submitAnExamAsATeacher(fullQuiz._id);
     // use Redux to change the quiz state...
+    console.log(response);
     history.push({pathname: '/viewQuizzes'});
   }
 

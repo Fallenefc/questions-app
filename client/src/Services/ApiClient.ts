@@ -1,6 +1,5 @@
 // API Client Service that makes the GET and the POST requests
 import { AxiosResponse } from 'axios'
-import { QuestionRaw } from '../Interfaces/Questions';
 import api from './AxiosConfig';
 
 // Get /me information

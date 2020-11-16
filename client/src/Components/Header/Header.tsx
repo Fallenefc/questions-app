@@ -29,7 +29,7 @@ export default function Header(): ReactElement<React.FC> {
     <header className="header">
       <div className="header-left">
         <div className="website-logo" onClick={handleClick}>
-          <img src={logoImg} height='100%' width='70px'></img>
+          <img src={logoImg} height='100%' width='70px' alt='header logo'></img>
         </div>
       </div>
       <div className="user-logout">

@@ -23,7 +23,7 @@ export default function Landing(): ReactElement {
             <span>Contact</span>
           </div>
           <div className='middle-content'>
-            <img src={logo} height='70px'></img>
+            <img src={logo} height='70px' alt='logo'></img>
           </div>
           <div className='right-content'>
             <button className='login-btn' name='login' onClick={handleClick}>Log In</button>
@@ -38,7 +38,7 @@ export default function Landing(): ReactElement {
             <button className='signup-btn' name='signup' onClick={handleClick}>Sign Up</button>
           </div>
           <div className='landing-image'>
-            <img src={landingHero} height='500px'></img>
+            <img src={landingHero} height='500px' alt='landing hero image'></img>
           </div>
         </div>
         <footer className='footer-distributed'>

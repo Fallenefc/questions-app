@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteQuestion } from "../../Services/ApiClient";
 import { deleteQuestionFromQuestionBank } from "../../Store/actions";
 import AddQuestionModal from "../AddQuestionModal/AddQuestionModal";

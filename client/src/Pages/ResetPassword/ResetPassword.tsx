@@ -33,7 +33,7 @@ const ResetPassword = () => {
           <div className="login-form-container">
             <div className="content-top">
               <div className="login-icon">
-                <img src={logoImg} width="100px" onClick={redirectToHome}></img>
+                <img src={logoImg} width="100px" onClick={redirectToHome} alt='logo'></img>
               </div>
             </div>
             <div className="content-middle">
@@ -59,7 +59,7 @@ const ResetPassword = () => {
             </div>
           </div>
           <div className="img-container">
-            <img src={pageImage}>
+            <img src={pageImage} alt='hero'>
             </img>
           </div>
         </div>

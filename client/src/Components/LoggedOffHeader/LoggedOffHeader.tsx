@@ -18,7 +18,7 @@ export default function LoggedOffHeader(): ReactElement {
       <span>Contact</span>
     </div>
     <div className='middle-content'>
-      <img src={logo} height='70px'></img>
+      <img src={logo} height='70px' alt='header logo'></img>
     </div>
     <div className='right-content'>
       <button className='login-btn' name='login' onClick={handleClick}>Log In</button>

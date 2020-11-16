@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement } from 'react'
 import { useHistory } from 'react-router-dom';
 import './styles.css'
 

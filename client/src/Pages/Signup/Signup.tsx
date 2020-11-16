@@ -88,12 +88,12 @@ const Signup = () => {
       {alertModal ? <AlertModal text='Failed to Sign up. Email most likely already exists' handleAlertModal={handleAlertModal}/> : null}
       <div className="login-container">
         <div className="img-container">
-          <img src={pageImage}></img>
+          <img src={pageImage} alt='hero'></img>
         </div>
         <div className="signup-form-container">
           <div className="content-top">
             <div className="login-icon">
-              <img src={logoImg} width="100px" onClick={redirectToHome}></img>
+              <img src={logoImg} width="100px" onClick={redirectToHome} alt='logo'></img>
             </div>
           </div>
           <div className="content-middle">
