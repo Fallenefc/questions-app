@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import QuizCard from '../../Components/QuizCard/QuizCard';
 import { State } from '../../Store/reducer';

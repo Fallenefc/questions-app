@@ -32,7 +32,7 @@ export default function AddQuestionModal({handleClick, questionId}: Props): Reac
           {quiz.title} ({quiz.questions.length})
           </div>
       })}
-      <button className='add-modal-close' onClick={handleClick}>Close Modal</button>
+      <button className='add-modal-close' onClick={handleClick}>Close</button>
     </div>
   )
 }

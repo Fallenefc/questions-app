@@ -1,11 +1,32 @@
-.padding {
-  padding: 20px;
-  background-color: white;
+.quiz-card-main {
+  background-color: rgb(235, 235, 235);
+  display: flex;
 }
 
-.padding:hover {
-  background-color: pink;
+.quiz-card-left {
+  padding: 20px;
+  width: 80%;
   cursor: pointer;
+}
+
+.quiz-card-right {
+  width: 20%;
+  background-color: rgb(199, 22, 22);
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.quiz-card-right:hover {
+  background-color: rgb(122, 13, 13);
+}
+
+.quiz-card-main:hover {
+  background-color: white;
 }
 
 .quizcard-title {

@@ -7,7 +7,7 @@
 
 .left-nav-bar button {
   /* background-color: var(--color-secondary-dark); */
-  background: linear-gradient(90deg, var(--color-secondary-dark), var(--color-secondary));
+  background: linear-gradient(0deg, var(--color-secondary-dark), var(--color-secondary));
   border: none;
   cursor: pointer;
   width: 100%;
@@ -17,7 +17,7 @@
 }
 
 .left-nav-bar button:hover {
-  background: linear-gradient(90deg, var(--color-secondary), var(--color-secondary-light));
+  background: linear-gradient(0deg, var(--color-secondary), var(--color-secondary-light));
   transition: ease 0.3s;
   color: black;
 }
