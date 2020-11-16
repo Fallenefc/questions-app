@@ -10,6 +10,7 @@ import {
   getFullExam,
   studentFinishedExam,
   studentGetFullExam,
+  testFunction,
 } from "./controllers/exams";
 import {
   deleteQuestion,
@@ -68,5 +69,6 @@ router.post('/finishExam', authMiddleware, studentFinishedExam);
 // Also returns JSON with the score
 router.get('/startExam/:id', authMiddleware, studentGetFullExam);
 
+router.post('/testRoute', authMiddleware, testFunction);
 
 export default router;

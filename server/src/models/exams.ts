@@ -1,8 +1,9 @@
-import mongoose from 'mongoose';
+import mongoose, { Mongoose } from 'mongoose';
 import { Question } from './question';
 
 interface SingleExam {
-  student: string,
+  studentId: string,
+  studentEmail: string,
   score: number
 }
 
@@ -30,10 +31,12 @@ export interface Exam {
 const examSchema: mongoose.Schema<Exam> = new mongoose.Schema({
   title: String,
   // timer: Number,
+  // questions: [{type: mongoose.Schema.Types.ObjectId, ref: 'Question'}], implement this after achieving MVP
   questions: [String],
   ownership: String,
   doneBy: [{
-    student: String,
+    studentId: String,
+    studentEmail: String,
     score: Number
   }],
   submitted: Boolean,

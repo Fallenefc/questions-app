@@ -1,5 +1,6 @@
 import Questions, {Question, QuestionRaw} from '../models/question'
 import {Document} from 'mongoose'
+import {v4 as uuidv4} from 'uuid';
 
 export const getQuestions = async (req: any, res: any): Promise<void> => {
   try {
@@ -30,9 +31,11 @@ export const postQuestion = async (req: any, res: any): Promise<void> => {
         error: "You are missing one (or more) of the params!"
       })
     }
+    const hashedId = uuidv4();
     const createdQuestion: Document = await Questions.create<QuestionRaw>({
       ...newQuestion,
-      ownership: req.user._id
+      ownership: req.user._id,
+      uuid: hashedId
     }); // check for mongoose document type
     console.log(`Added to database: ${JSON.stringify(newQuestion)}`)
     res.send(createdQuestion)

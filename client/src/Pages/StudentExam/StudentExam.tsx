@@ -38,6 +38,7 @@ export default function StudentExam(): ReactElement {
       {exam ? exam.options.map((option: any, index: number) => {
         return <StudentQuestionCard stem={option.stem} options={option.options} index={index} handleChoice={handleChoice} id={option._id}/>
       }) : <div>Loading Exam...</div>}
+      <button className='submit-exam-button'>Submit Your Exam</button>
     </div>
   )
 }

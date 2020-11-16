@@ -9,7 +9,8 @@ export interface QuestionRaw {
   ownership: string, // change this value later
   // This will (or will not be) implemented later
   done?: boolean,
-  difficulty?: string
+  difficulty?: string,
+  uuid: string
 }
 
 export interface Question extends QuestionRaw {
@@ -28,6 +29,7 @@ const questionSchema: mongoose.Schema<QuestionRaw> = new mongoose.Schema({
     // This will (or will not be) implemented later
   done: Boolean,
   difficulty: String,
+  uuid: String,
 })
 
 export default mongoose.model('Question', questionSchema);

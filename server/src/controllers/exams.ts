@@ -1,6 +1,7 @@
 import Exams, { Exam, ExamRaw } from '../models/exams';
 import Questions from '../models/question';
 import {v4 as uuidv4} from 'uuid';
+import { examScoreCalculator } from '../utils/utils';
 
 export const getExams = async (req: any, res: any): Promise<void> => {
   try {
@@ -62,7 +63,7 @@ export const addQuestionToExam = async (req: any, res: any): Promise<void> => {
 
 // FUNCTION TO GET A SINGLE FULL QUESTION FROM THE DATABASE
 
-const getSingleQuestion = async (questionId: string) => {
+export const getSingleQuestion = async (questionId: string) => {
   try {
     const question = await Questions.findOne({_id: questionId});
     // console.log(question);
@@ -163,20 +164,28 @@ export const fetchExamByHashedId = async (req: any, res: any): Promise<void> => 
 
 export const studentFinishedExam = async (req: any, res: any): Promise<void> => {
   try {
-    const examHashedId = req.body.examHashedId;
-    const correctAnswersArray = req.body.corrects; // make this into an array of objects with question id and answer, or maybe an object with _id as key?
-    const userId = req.user._id;
+    const studentAnswers = req.body.answers;
+    const questionsArray = req.body.questions;
+    const examId = req.body.hashedId;
 
-    const exam = (await Exams.findOne({hashedId: examHashedId})).toObject();
-    exam.doneBy.push({
-      userId,
-      score: 100, // create a function here to compare correctanswersarray and the correct answers
-    })
-    console.log(exam);
+    const score = await examScoreCalculator(studentAnswers, questionsArray);
+    const exam = (await Exams.findOne({hashedId: examId})).toObject();
 
-    await Exams.findOneAndUpdate({hashedId: examHashedId}, {doneBy: exam.doneBy});
+    exam.doneBy = [...exam.doneBy, {
+      studentId: req.user._id,
+      studentEmail: req.user.username,
+      score
+    }]
+
+    console.log(exam.doneBy);
+
+    await Exams.findByIdAndUpdate({_id: exam._id}, {doneBy: exam.doneBy});
+
     res.status(200);
-    res.json({score: exam.doneBy.score});
+    res.send({
+      score
+    });
+
   } catch (err) {
     res.status(400);
   }
@@ -187,21 +196,10 @@ export const studentGetFullExam = async (req: any, res: any): Promise<void> => {
     const examId = req.params.id;
     const exam = (await Exams.findOne({hashedId: examId})).toObject();
 
-    // exam.questions = await Promise.all(exam.questions.map(async (questionId: any) => {
-    //   const question: any = await getSingleQuestion(questionId);
-    //   // if (!question) return // DO SOMETHING WHEN IT DOESNT EXIST ANYMORE!
-    //   console.log(question);
-    //   const filteredQuestion = {
-    //     options: question.options,
-    //     stem: question.stem
-    //   }
-    //   return filteredQuestion;
-    // }))
-
     const fetchedQuestions = await Questions.find().where('_id').in(exam.questions);
     const filteredQuestions = fetchedQuestions.map((value: any) => {
       return ({
-        _id: value._id,
+        _id: value.uuid,
         options: value.options,
         stem: value.stem
       })
@@ -218,4 +216,10 @@ export const studentGetFullExam = async (req: any, res: any): Promise<void> => {
   } catch (err) {
     res.status(400);
   }
+}
+
+export const testFunction = async (req: any, res: any): Promise<void> => {
+  const studentAnswers = req.body.answers;
+  const arrayOfQuestions = req.body.questions;
+  const score = await examScoreCalculator(studentAnswers, arrayOfQuestions);
 }

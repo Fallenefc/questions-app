@@ -10,3 +10,19 @@
   font-weight: 600;
   font-size: 30px;
 }
+
+.submit-exam-button {
+  height: 60px;
+  width: 240px;
+  border: none;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.submit-exam-button:hover {
+  background-color: var(--color-primary-dark);
+  cursor: pointer;
+}
