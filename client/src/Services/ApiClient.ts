@@ -111,3 +111,16 @@ export const apiGetFullExamAsAStudent = async (examId: string) => {
     console.error(err);
   }
 }
+
+export const submitAnExamAsAStudent = async (examId: string, answers: any, questions: string[]) => {
+  try {
+    const response = await api.post('/finishExam', {
+      hashedId: examId,
+      questions: questions,
+      answers: answers
+    })
+    return response;
+  } catch (err) {
+    console.error(err);
+  }
+}

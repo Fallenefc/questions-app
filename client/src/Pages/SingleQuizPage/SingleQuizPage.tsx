@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { QuestionCard } from '../../Components/QuestionCard/QuestionCard';
-import { apiDeleteAnExam, getFullQuiz } from '../../Services/ApiClient';
+import { apiDeleteAnExam, getFullQuiz, submitAnExamAsAStudent } from '../../Services/ApiClient';
 import { deleteAnExam } from '../../Store/actions';
 import './styles.css'
 

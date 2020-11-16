@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import StudentQuestionCard from '../../Components/StudentQuestionCard/StudentQuestionCard';
-import { apiGetFullExamAsAStudent } from '../../Services/ApiClient';
+import { apiGetFullExamAsAStudent, submitAnExamAsAStudent } from '../../Services/ApiClient';
 import './styles.css'
 
 export default function StudentExam(): ReactElement {
@@ -14,6 +14,7 @@ export default function StudentExam(): ReactElement {
 
   const [exam, setExam] = useState<any>(null);
   const [answers, setAnswers] = useState<any>({});
+  const [questionsIds, setQuestionsIds] = useState<any>([]);
 
   useEffect(() => {
     apiGetFullExamAsAStudent(params.examId).then((response: any) => {
@@ -21,6 +22,7 @@ export default function StudentExam(): ReactElement {
       // console.log(response);
       response.options.forEach((value: any) => {
         answers[value._id] = null;
+        setQuestionsIds((array: any) => [...array, value._id])
       })
     })
   }, [])
@@ -32,13 +34,19 @@ export default function StudentExam(): ReactElement {
     setAnswers(answersCopy);
   }
 
+
+  const handleExamSubmission = async () => {
+    const response: any = await submitAnExamAsAStudent(exam.hashedId, answers, questionsIds);
+    console.log(response.data.score);
+  }
+
   return (
     <div className='student-exam-container'>
       <span className='student-exam-title'>{exam ? exam.title : null}</span>
       {exam ? exam.options.map((option: any, index: number) => {
         return <StudentQuestionCard stem={option.stem} options={option.options} index={index} handleChoice={handleChoice} id={option._id}/>
       }) : <div>Loading Exam...</div>}
-      <button className='submit-exam-button'>Submit Your Exam</button>
+      <button className='submit-exam-button' onClick={handleExamSubmission}>Submit Your Exam</button>
     </div>
   )
 }
