@@ -22,14 +22,17 @@ export default function AddQuestionModal({handleClick, questionId}: Props): Reac
 
   return (
     <div className='modal'>
-      Modal window goes brrrrrrrrrrrrrrr
+      <div className='add-modal-top'>
+      <span className='add-modal-title'>Select the Quiz(es) you want to add this question to </span>
+      <span onClick={handleClick} className='close-modal'>X</span>
+      </div>
       {quizzes.map((quiz) => {
-        return <div>
-          <button onClick={() => {handleAddQuestionToQuiz(questionId, quiz._id)}}>Add</button>
+        return <div className='add-modal-quizoption'>
+          <button onClick={() => {handleAddQuestionToQuiz(questionId, quiz._id)}} className='add-to-quiz-btn'>Add</button>
           {quiz.title} ({quiz.questions.length})
           </div>
       })}
-      <span onClick={handleClick}>X</span>
+      <button className='add-modal-close' onClick={handleClick}>Close Modal</button>
     </div>
   )
 }
