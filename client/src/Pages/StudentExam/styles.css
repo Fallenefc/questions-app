@@ -1,0 +1,12 @@
+.student-exam-container {
+  padding: 30px;
+  background-color: white;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.student-exam-title {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  font-size: 30px;
+}

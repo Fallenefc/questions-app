@@ -201,6 +201,7 @@ export const studentGetFullExam = async (req: any, res: any): Promise<void> => {
     const fetchedQuestions = await Questions.find().where('_id').in(exam.questions);
     const filteredQuestions = fetchedQuestions.map((value: any) => {
       return ({
+        _id: value._id,
         options: value.options,
         stem: value.stem
       })

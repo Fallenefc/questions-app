@@ -1,0 +1,11 @@
+.student-question-card {
+  margin-bottom: 30px;
+}
+
+.student-question-stem {
+  margin-bottom: 10px;
+}
+
+.student-question-stem:first-child {
+  margin-top: 20px;
+}
