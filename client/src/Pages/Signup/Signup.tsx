@@ -147,32 +147,6 @@ const Signup = () => {
         </div>
       </div>
     </div>
-    // <div className='signup-page'>
-    //   <div className='signup-container'>
-    //     <div className='logo-side'>
-    //       <img src={logoImg} className='logo-img'></img>
-    //       <img src={pageImage}></img>
-    //     </div>
-    //     <div className='signup-form-container'>
-    //       <div className='signup-title'>Sign Up</div>
-    //       <form className='signup-form' onSubmit={handleSubmit}>
-    //       <p>Name</p>
-    //         <input type='text' name='name' onChange={handleChange} value={name}></input>
-    //         <p>Email</p>
-    //         <input type='text' name='email' onChange={handleChange} value={email}></input>
-    //         <p>Password</p>
-    //         <input type='password' name='password' onChange={handleChange} value={password}></input>
-    //         <p>Confirm your Password</p>
-    //         <input type='password' name='passwordConf' onChange={handleChange} value={passwordConf}></input>
-    //         <p>I agree with the Terms of Service            <input type='checkbox'></input></p>
-    //         <button type='submit'>Sign Up</button>
-    //       </form>
-    //       <div className='signup-container-footer'>
-    //         Already have an account? <span onClick={handleRedirect}>Log in here</span>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 
