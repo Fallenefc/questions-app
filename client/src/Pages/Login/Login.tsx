@@ -6,7 +6,7 @@ import { logIn } from "../../Services/ApiClientUser";
 import { useHistory } from "react-router-dom";
 import AlertModal from "../../Components/AlertModal/AlertModal";
 import { useDispatch } from "react-redux";
-import { resetApiCall } from "../../Store/actions";
+import { addUser, resetApiCall } from "../../Store/actions";
 
 export default function Login(): ReactElement {
   const [email, setEmail] = useState("");
@@ -37,7 +37,7 @@ export default function Login(): ReactElement {
         localStorage.setItem("token", `Bearer ${response.data.token}`);
         dispatch(resetApiCall());
         history.push({ pathname: "/" });
-        // window.location.reload(false);
+        dispatch(addUser(response.data.user));
       })
       .catch((err) => {
         setAlertModal(true);
@@ -64,7 +64,7 @@ export default function Login(): ReactElement {
             <div className="login-title">Log In</div>
             <div className="no-account">
               {alertModal ? <AlertModal text='Invalid email/password' handleAlertModal={handleAlertModal}/> : null}
-              Need a Boilimax account? <span onClick={handleRedirect}>Create an account</span>
+              Need a Boota account? <span onClick={handleRedirect}>Create an account</span>
             </div>
             <form className="login-form" onSubmit={handleSubmit}>
               <p>Email</p>

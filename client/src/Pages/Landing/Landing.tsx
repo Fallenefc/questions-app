@@ -12,7 +12,7 @@ export default function Landing(): ReactElement {
     event.target.name === 'login' ? history.push({pathname: '/login'}) : history.push({pathname: '/signup'});
   }
 
-  const title = 'Boilimax';
+  const title = 'Boota';
 
   return (
     <div className='landing-page'>
@@ -60,13 +60,13 @@ export default function Landing(): ReactElement {
         <div>
           <i className="fa fa-map-marker"></i>
           <p>
-            <span>blablabla</span>
+            <span>SK, Canada</span>
           </p>
         </div>
 
         <div>
-          <i className="fa fa-phone"></i>
-          <p>Phone?</p>
+          <i className="fa fa-github"></i>
+          <p>Fallenefc</p>
         </div>
         <div>
           <i className="fa fa-envelope"></i>
@@ -78,24 +78,10 @@ export default function Landing(): ReactElement {
       <div className="footer-right">
         <p className="footer-company-about">
           <span>About Me</span>
-          Web developer
+          I am a web developer based in Canada.
         </p>
         <div className="footer-icons">
-          <a href="#">
-            <i className="fa fa-facebook"></i>
-          </a>
-          <a href="#">
-            <i className="fa fa-twitter"></i>
-          </a>
-          <a href="#">
-          <i className="fa fa-github"></i>
-          </a>
-          <a href="#">
-            <i className="fa fa-linkedin"></i>
-          </a>
-          <a href="#">
-            <i className="fa fa-youtube"></i>
-          </a>
+          {/* No icons yet */}
         </div>
       </div>
         </footer>

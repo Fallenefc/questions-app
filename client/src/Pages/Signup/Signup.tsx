@@ -99,7 +99,7 @@ const Signup = () => {
           <div className="content-middle">
             <div className="login-title">Sign Up</div>
             <div className="no-account">
-              Already have a Boilimax account?{" "}
+              Already have a Boota account?{" "}
               <span onClick={handleRedirect}>Login here!</span>
             </div>
             <form className="login-form" onSubmit={handleSubmit}>
