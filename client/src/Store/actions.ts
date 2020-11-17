@@ -11,6 +11,8 @@ export const DELETE_QUESTION = 'DELETE_QUESTION';
 export const GET_QUIZZES = 'GET_QUIZZES';
 export const DELETE_EXAM = 'DELETE_EXAM';
 export const DELETE_QUESTION_FROM_EXAM = 'DELETE_QUESTION_FROM_EXAM';
+export const API_CALL_IS_MADE = 'API_CALL_IS_MADE';
+export const RESET_API_CALL = 'RESET_API_CALL';
 
 export interface Action {
   type: string,
@@ -66,4 +68,14 @@ export const deleteQuestionFromExam = (examId: string, questionId: string): Acti
     examId,
     questionId
   }
+})
+
+export const apiCallIsMade = (): Action => ({
+  type: API_CALL_IS_MADE,
+  payload: true
+})
+
+export const resetApiCall = (): Action => ({
+  type: RESET_API_CALL,
+  payload: false
 })

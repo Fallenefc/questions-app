@@ -18,11 +18,9 @@ export default function Header(): ReactElement<React.FC> {
   }
 
   const handleLogout = () => {
-    // change the user state to null again
     dispatch(addUser(null));
     localStorage.removeItem('token');
     history.push('/')
-    window.location.reload(false);
   }
 
   return (

@@ -11,6 +11,7 @@ export const getInfo = async () => {
     return response;
   } catch (err) {
     console.error(err);
+    return false;
   }
 }
 

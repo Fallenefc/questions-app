@@ -5,6 +5,8 @@ import logoImg from "../../Assets/logo2.svg";
 import { logIn } from "../../Services/ApiClientUser";
 import { useHistory } from "react-router-dom";
 import AlertModal from "../../Components/AlertModal/AlertModal";
+import { useDispatch } from "react-redux";
+import { resetApiCall } from "../../Store/actions";
 
 export default function Login(): ReactElement {
   const [email, setEmail] = useState("");
@@ -12,6 +14,7 @@ export default function Login(): ReactElement {
   const [alertModal, setAlertModal] = useState(false);
 
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const handleChange = (event: any) => {
     if (event.target.name === "password") setPassword(event.target.value);
@@ -32,8 +35,9 @@ export default function Login(): ReactElement {
     logIn(email, password)
       .then((response) => {
         localStorage.setItem("token", `Bearer ${response.data.token}`);
+        dispatch(resetApiCall());
         history.push({ pathname: "/" });
-        window.location.reload(false);
+        // window.location.reload(false);
       })
       .catch((err) => {
         setAlertModal(true);

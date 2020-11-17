@@ -1,20 +1,22 @@
 import { Question } from "../Interfaces/Questions";
 import { Quiz } from "../Interfaces/Quiz";
 import { User } from "../Interfaces/User";
-import { Action, ADD_QUESTION_TO_QBANK, ADD_QUESTION_TO_QUIZ, ADD_QUIZ, ADD_USER, DELETE_EXAM, DELETE_QUESTION, GET_QUESTIONS, GET_QUIZZES } from "./actions";
+import { Action, ADD_QUESTION_TO_QBANK, ADD_QUESTION_TO_QUIZ, ADD_QUIZ, ADD_USER, API_CALL_IS_MADE, DELETE_EXAM, DELETE_QUESTION, GET_QUESTIONS, GET_QUIZZES, RESET_API_CALL } from "./actions";
 
 const initialState: State = {
   running: null,
   user: null,
   quizzes: [],
-  questions: []
+  questions: [],
+  isApiCallMade: false
 }
 
 export interface State {
   running: Quiz | null,
   user: User | null,
   quizzes: Quiz[],
-  questions: Question[]
+  questions: Question[],
+  isApiCallMade: boolean
 }
 
 export const reducer = (state = initialState, action: Action) => {
@@ -74,6 +76,16 @@ export const reducer = (state = initialState, action: Action) => {
     //     ...state,
     //     quizzes: state.quizzes.
     //   })
+    case API_CALL_IS_MADE:
+      return ({
+        ...state,
+        isApiCallMade: action.payload
+      })
+    case RESET_API_CALL:
+      return ({
+        ...state,
+        isApiCallMade: action.payload
+      })
     
     default: 
       return state;

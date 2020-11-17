@@ -1,0 +1,14 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: row;
+}
+
+.loading-text {
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px;
+}
